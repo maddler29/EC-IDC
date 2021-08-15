@@ -18,6 +18,7 @@ Route::name('product.')
         // 5-1Route::middleware('auth')
         Route::get('/product/sell', 'SellController@showSellForm')->name('sell');
         Route::get('/product/{id}', 'ProductController@show')->name('show');
+        Route::get('/product/create', 'SellController@createSellForm')->name('create');
     });
 
 Route::name('line_item.')
@@ -31,7 +32,3 @@ Route::name('cart.')
         Route::get('/cart/checkout', 'CartController@checkout')->name('checkout');
         Route::get('/cart/success', 'CartController@success')->name('success');
     });
-
-
-
-
