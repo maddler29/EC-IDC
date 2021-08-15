@@ -6,9 +6,8 @@ use Illuminate\Http\Request;
 
 class SellController extends Controller
 {
-    // 出品画面
-    public function showSellForm()
+    public function createSellForm()
     {
-        return view('product.sell');
+        return view('sell.create');
     }
 }
