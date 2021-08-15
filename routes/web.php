@@ -11,14 +11,18 @@
 |
 */
 
+
+
 Route::name('product.')
     ->group(function () {
         Route::get('/', 'ProductController@index')->name('index');
-
         // 5-1Route::middleware('auth')
-        Route::get('/product/sell', 'SellController@showSellForm')->name('sell');
         Route::get('/product/{id}', 'ProductController@show')->name('show');
-        Route::get('/product/create', 'SellController@createSellForm')->name('create');
+    });
+
+Route::name('sell.')
+    ->group(function () {
+        Route::get('/sell/create', 'SellController@createSellForm')->name('create');
     });
 
 Route::name('line_item.')
