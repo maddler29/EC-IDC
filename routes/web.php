@@ -23,6 +23,7 @@ Route::name('product.')
 Route::name('sell.')
     ->group(function () {
         Route::get('/sell/create', 'SellController@createSellForm')->name('create');
+        Route::get('/sell', 'SellController@indexSellForm')->name('index');
     });
 
 Route::name('line_item.')

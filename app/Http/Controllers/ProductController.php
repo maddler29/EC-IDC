@@ -14,8 +14,7 @@ class ProductController extends Controller
             // Eloquentのgetメソッドを用いてproductsテーブルの全データ取得し、
             // productsという変数名でBladeテンプレートに渡しています。
             ->with('products', Product::get());
-
-        }
+    }
 
     public function show($id)
     {
