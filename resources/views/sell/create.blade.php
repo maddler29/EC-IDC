@@ -65,12 +65,49 @@
                     </div>
 
                     {{-- 商品のサイズ --}}
+                    <div class="row g-3">
+                        <div class="col-sm">
+                            <label for="condition">Jサイズ</label>
+                            <select name="condition" class="custom-select form-control @error('condition') is-invalid @enderror">
+                                {{-- 次のパートで実装します --}}
+                            </select>
+                            @error('condition')
+                            <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                            @enderror
+                        </div>
+                        <div class="col-sm">
+                            <label for="condition">SKDサイズ</label>
+                            <select name="condition" class="custom-select form-control @error('condition') is-invalid @enderror">
+                                {{-- 次のパートで実装します --}}
+                            </select>
+                            @error('condition')
+                            <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                            @enderror
+                        </div>
+                        <div class="col-sm">
+                            <label for="condition">Pサイズ</label>
+                            <select name="condition" class="custom-select form-control @error('condition') is-invalid @enderror">
+                                {{-- 次のパートで実装します --}}
+                            </select>
+                            @error('condition')
+                            <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    {{-- 区分 --}}
                     <div class="form-group mt-3">
-                        <label for="condition">サイズ</label>
-                        <select name="condition" class="custom-select form-control @error('condition') is-invalid @enderror">
+                        <label for="section">区分</label>
+                        <select name="section" class="custom-select form-control @error('section') is-invalid @enderror">
                             {{-- 次のパートで実装します --}}
                         </select>
-                        @error('condition')
+                        @error('section')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
