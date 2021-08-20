@@ -30,4 +30,17 @@ class SellController extends Controller
         // カテゴリーidを作成し連携
         return redirect()->route('sell.index');
     }
+
+    public function updateSellForm(Request $request, $id)
+    {
+        $items = Product::find($id);
+        $items->name = $request->input('name');
+        $items->description = $request->input('description');
+        $items->image = $request->input('image');
+        $items->price = $request->input('price');
+        $items->save();
+        // $items->size = $request->input('size');
+        // カテゴリーidを作成し連携
+        return redirect()->route('sell.index');
+    }
 }
