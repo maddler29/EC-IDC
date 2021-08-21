@@ -11,7 +11,8 @@
 |
 */
 
-
+use App\Http\Controllers\SellController;
+use Hamcrest\Internal\SelfDescribingValue;
 
 Route::name('product.')
     ->group(function () {
@@ -25,6 +26,7 @@ Route::name('sell.')
         Route::get('/sell', 'SellController@indexSellForm')->name('index');
         Route::get('/sell/create', 'SellController@createSellForm')->name('create');
         Route::post('/sell/store', 'SellController@storeSellForm')->name('store');
+        Route::patch('/sell/{id}/update', 'SellController@updateSellForm')->name('update');
     });
 
 Route::name('line_item.')
