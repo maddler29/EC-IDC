@@ -32,4 +32,15 @@ class ProductRequest extends FormRequest
             'material'    => 'required|string',
         ];
     }
+    public function attributes()
+    {
+        return [
+            'name'        => '商品名',
+            'description' => '商品の説明',
+            'image'       => '商品の画像',
+            'price'       => '販売価格',
+            'size'        => 'サイズ',
+            'material'    => '素材',
+        ];
+    }
 }
