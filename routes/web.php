@@ -11,7 +11,7 @@
 |
 */
 
-use App\Http\Controllers\SellController;
+use App\Http\Controllers\AdminSellController;
 use Hamcrest\Internal\SelfDescribingValue;
 
 Route::name('product.')
@@ -21,13 +21,14 @@ Route::name('product.')
         Route::get('/product/{id}', 'ProductController@show')->name('show');
     });
 
-Route::name('sell.')
-    ->group(function () {
-        Route::get('/sell', 'SellController@indexSellForm')->name('index');
-        Route::get('/sell/create', 'SellController@createSellForm')->name('create');
-        Route::post('/sell/store', 'SellController@storeSellForm')->name('store');
-        Route::patch('/sell/{id}/update', 'SellController@updateSellForm')->name('update');
-    });
+// 管理者出品画面
+Route::group(['prefix' => 'AdminSell','as' => 'AdminSell.'], function () {
+    Route::get('/', 'AdminSellController@indexAdminSellForm')->name('index');
+    Route::get('/create', 'AdminSellController@createAdminSellForm')->name('create');
+    Route::post('/store', 'AdminSellController@storeAdminSellForm')->name('store');
+    Route::patch('/{id}/update', 'AdminSellController@updateAdminSellForm')->name('update');
+
+});
 
 Route::name('line_item.')
     ->group(function () {

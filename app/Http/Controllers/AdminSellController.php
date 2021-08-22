@@ -5,20 +5,20 @@ namespace App\Http\Controllers;
 use App\Product;
 use Illuminate\Http\Request;
 
-class SellController extends Controller
+class AdminSellController extends Controller
 {
-    public function indexSellForm()
+    public function indexAdminSellForm()
     {
-        return view('sell.index')
+        return view('admin/sell.index')
             ->with('products', Product::get());
     }
 
-    public function createSellForm()
+    public function createAdminSellForm()
     {
-        return view('sell.create');
+        return view('admin/sell.create');
     }
 
-    public function storeSellForm(Request $request)
+    public function storeAdminSellForm(Request $request)
     {
         $items = new Product();
         $items->name = $request->input('name');
@@ -28,10 +28,10 @@ class SellController extends Controller
         $items->save();
         // $items->size = $request->input('size');
         // カテゴリーidを作成し連携
-        return redirect()->route('sell.index');
+        return redirect()->route('admin/sell.index');
     }
 
-    public function updateSellForm(Request $request, $id)
+    public function updateAdminSellForm(Request $request, $id)
     {
         $items = Product::find($id);
         $items->name = $request->input('name');
@@ -41,6 +41,6 @@ class SellController extends Controller
         $items->save();
         // $items->size = $request->input('size');
         // カテゴリーidを作成し連携
-        return redirect()->route('sell.index');
+        return redirect()->route('admin/sell.index');
     }
 }
