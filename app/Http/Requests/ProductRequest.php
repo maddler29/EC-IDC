@@ -26,7 +26,7 @@ class ProductRequest extends FormRequest
         return [
             'name'        => 'required|string|max:50',
             'description' => 'required|string|max:500',
-            'image'       => 'required',
+            'image'       => 'required|file|image',
             'price'       => 'required|integer|min:100|max:9999999',
             'size'        => 'required|alpha_num',
             'material'    => 'required|string',
@@ -37,7 +37,7 @@ class ProductRequest extends FormRequest
         return [
             'name'        => '商品名',
             'description' => '商品の説明',
-            'image'       => '商品の画像',
+            'image'       => '商品画像',
             'price'       => '販売価格',
             'size'        => 'サイズ',
             'material'    => '素材',
