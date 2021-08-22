@@ -22,12 +22,11 @@ Route::name('product.')
     });
 
 // 管理者出品画面
-Route::group(['prefix' => 'AdminSell','as' => 'AdminSell.'], function () {
+Route::group(['prefix' => 'AdminSell', 'as' => 'AdminSell.'], function () {
     Route::get('/', 'AdminSellController@indexAdminSellForm')->name('index');
     Route::get('/create', 'AdminSellController@createAdminSellForm')->name('create');
     Route::post('/store', 'AdminSellController@storeAdminSellForm')->name('store');
     Route::patch('/{id}/update', 'AdminSellController@updateAdminSellForm')->name('update');
-
 });
 
 Route::name('line_item.')
