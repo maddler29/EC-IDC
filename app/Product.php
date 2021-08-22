@@ -12,6 +12,13 @@ class Product extends Model
         return $this->belongsToMany(
             Cart::class,
             'line_items',
-         )->withPivot(['id', 'quantity']);
+        )->withPivot(['id', 'quantity']);
+    }
+
+    public function item_categories()
+    {
+        return $this->belongsTo(
+            ItemCategory::class
+        );
     }
 }
