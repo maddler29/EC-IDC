@@ -22,7 +22,8 @@ Route::name('product.')
     });
 
 // 管理者出品画面
-Route::resource('/admin','Admin\SellController');
+
+Route::resource('/admin', 'Admin\SellController');
 
 Route::name('line_item.')
     ->group(function () {
