@@ -13,7 +13,7 @@
     </div>
     <div>
         {{--出品画面へのリンク作成--}}
-        <a class="fas fa-camera" href="{{ route('sell.create') }}">商品を出品する</a>
+        <a class="fas fa-camera" href="{{ route('AdminSell.create') }}">商品を出品する</a>
     </div>
 </nav>
 @yield('content')
