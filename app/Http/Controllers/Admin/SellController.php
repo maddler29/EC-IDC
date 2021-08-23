@@ -66,7 +66,8 @@ class SellController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Product::find($id);
+        return view('admin/sell.edit', ['item' => $item]);
     }
 
     /**
@@ -97,6 +98,8 @@ class SellController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = Product::find($id);
+        $item->delete();
+        return redirect()->route('admin/sell.index');
     }
 }
