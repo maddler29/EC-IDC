@@ -11036,17 +11036,17 @@ a.text-dark:focus {
   padding: 12px 0 12px;
 }
 
-.cart-wrapper {
+.cart-wrapper,.sell-wrapper {
   width: 720px;
   margin: 20px;
 }
 
-.cart-wrapper .card-body {
+.cart-wrapper .card-body,.sell-wrapper {
   display: flex;
   align-items: center;
 }
 
-.cart__title {
+.cart__title,.sell__title {
   font-size: 24px;
   color: #4a4a4a;
   letter-spacing: 1px;
