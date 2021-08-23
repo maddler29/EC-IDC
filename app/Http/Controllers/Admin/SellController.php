@@ -54,7 +54,8 @@ class SellController extends Controller
      */
     public function show($id)
     {
-        //
+        $item = Product::find($id);
+        return view('admin/sell.show', ['item' => $item]);
     }
 
     /**
@@ -98,6 +99,4 @@ class SellController extends Controller
     {
         //
     }
-
-
 }
