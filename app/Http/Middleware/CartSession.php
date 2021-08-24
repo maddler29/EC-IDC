@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Session;
-use App\Cart;
+use App\Models\Cart;
 
 class CartSession
 {
