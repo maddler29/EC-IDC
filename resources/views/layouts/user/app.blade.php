@@ -1,15 +1,11 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title') |{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- Bootstrap Font Awesome-->
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 </head>
 <body>
     <div id="app">
@@ -72,5 +68,9 @@
             @yield('content')
         </main>
     </div>
+    <!-- Bootstrap Vue JavaScript -->
+    <script src="{{ mix('js/app.js') }}"></script>
+    <!-- MDBootstrap JavaScript -->
+    <script type="text/javascript" src="/js/mdb.min.js"></script>
 </body>
 </html>

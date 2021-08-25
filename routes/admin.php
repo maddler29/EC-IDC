@@ -7,7 +7,7 @@ Route::namespace('Admin')->group(function () {
     // ログイン認証関連
     Auth::routes([
         'register' => true,
-        'reset'    => false,
+        'reset'    => true,
         'verify'   => false
     ]);
 
