@@ -19,4 +19,10 @@ class BrandCategory extends Model
             ItemCategory::class
         );
     }
+    public function gender_categories()
+    {
+        return $this->belongsTo(
+            GenderCategory::class
+        );
+    }
 }
