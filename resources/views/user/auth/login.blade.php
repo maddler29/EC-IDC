@@ -24,7 +24,7 @@
                                 <div class="text-left">
                                     <a class="card-text" href="{{route('user.password.request')}}">パスワードを忘れた方はこちら</a>
                                 </div>
-                                <button class="btn btn-block peach-gradient mt-2 mb-2" type="submit">ログイン</button>
+                                <button class="btn btn-block btn-primary mt-2 mb-2" type="submit">ログイン</button>
                             </form>
                             <div class="mt-0">
                                 <a href="{{ route('user.register') }}" class="card-text">ユーザー登録はこちら</a>

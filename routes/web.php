@@ -19,7 +19,7 @@ Route::namespace('User')->group(function () {
     // ログイン認証関連
     Auth::routes([
         'register' => true,
-        'reset'    => false,
+        'reset'    => true,
         'verify'   => false
     ]);
 
