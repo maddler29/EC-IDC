@@ -16,7 +16,11 @@ class CreateItemCategoriesTable extends Migration
         Schema::create('item_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('item_name');
+            $table->unsignedBigInteger('gender_id');
+            $table->integer('sort_no');
             $table->timestamps();
+
+            $table->foreign('gender_id')->references('id')->on('gender_categories')->onDelete('cascade');
         });
     }
 
