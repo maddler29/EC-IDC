@@ -22,29 +22,33 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
         'reset'    => false,
         'verify'   => false
     ]);
-    Route::name('product.')
-        ->group(function () {
-            Route::get('/', 'ProductController@index')->name('index');
-            // 5-1Route::middleware('auth')
-            Route::get('/product/{id}', 'ProductController@show')->name('show');
-        });
-    Route::name('line_item.')
-        ->group(function () {
-            Route::post('/line_item/create', 'LineItemController@create')->name('create');
-            Route::post('/line_item/delete', 'LineItemController@delete')->name('delete');
-        });
-    Route::name('cart.')
-        ->group(function () {
-            Route::get('/cart', 'CartController@index')->name('index');
-            Route::get('/cart/checkout', 'CartController@checkout')->name('checkout');
-            Route::get('/cart/success', 'CartController@success')->name('success');
-        });
+
     // ログイン認証後
     Route::middleware('auth:user')->group(function () {
 
         // TOPページ
         Route::resource('home', 'HomeController', ['only' => 'index']);
 
+    });
+
+});
+Route::namespace('User')->name('user.')->group(function () {
+Route::name('product.')
+    ->group(function () {
+        Route::get('/', 'ProductController@index')->name('index');
+        // 5-1Route::middleware('auth')
+        Route::get('/product/{id}', 'ProductController@show')->name('show');
+    });
+Route::name('line_item.')
+    ->group(function () {
+        Route::post('/line_item/create', 'LineItemController@create')->name('create');
+        Route::post('/line_item/delete', 'LineItemController@delete')->name('delete');
+    });
+Route::name('cart.')
+    ->group(function () {
+        Route::get('/cart', 'CartController@index')->name('index');
+        Route::get('/cart/checkout', 'CartController@checkout')->name('checkout');
+        Route::get('/cart/success', 'CartController@success')->name('success');
     });
 });
 Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
