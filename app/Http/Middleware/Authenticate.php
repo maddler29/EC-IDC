@@ -12,24 +12,18 @@ class Authenticate extends Middleware
 
     /**
      * Get the path the user should be redirected to when they are not authenticated.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return string|null
+     * @param \Illuminate\Http\Request $request
+     * @return string|void|null
      */
     protected function redirectTo($request)
     {
-        if (! $request->expectsJson()) {
-
-            if(Route::is('admin.*')) {
-
-                return route($this->admin_route);
-
-            } else {
-
+        // ルーティングに応じて未ログイン時のリダイレクト先を振り分ける
+        if (!$request->expectsJson()) {
+            if (Route::is('user.*')) {
                 return route($this->user_route);
-
+            } elseif (Route::is('admin.*')) {
+                return route($this->admin_route);
             }
-
         }
     }
 }

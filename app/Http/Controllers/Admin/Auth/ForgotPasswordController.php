@@ -28,9 +28,7 @@ class ForgotPasswordController extends Controller
 
     public function showLinkRequestForm()
     {
-        return view('auth.passwords.email')->with(
-            ['authgroup' => 'admin']
-        );
+        return view('admin.auth.passwords.email');
     }
 
     protected function broker()
