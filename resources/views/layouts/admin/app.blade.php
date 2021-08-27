@@ -24,7 +24,7 @@
                     <ul class="navbar-nav mr-auto">
                         <li>
                             {{--出品画面へのリンク作成--}}
-                            <a class="fas fa-camera" href="{{ route('admin.create') }}">商品を出品する</a>
+                            <a class="fas fa-camera" href="{{ route('admin.product.create') }}">商品を出品する</a>
                         </li>
 
                     </ul>
