@@ -19,7 +19,7 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
     // ログイン認証関連
     Auth::routes([
         'register' => true,
-        'reset'    => false,
+        'reset'    => true,
         'verify'   => false
     ]);
 
@@ -56,7 +56,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
     // ログイン認証関連
     Auth::routes([
         'register' => true,
-        'reset'    => false,
+        'reset'    => true,
         'verify'   => false
     ]);
     Route::resource('/product', 'SellController')->only(['create','show']);
