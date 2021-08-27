@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Product;
+
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class SellController extends Controller
