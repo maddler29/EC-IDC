@@ -12,7 +12,7 @@
 
             <div class="font-weight-bold text-center border-bottom pb-3 pt-3" style="font-size: 24px">商品を出品する</div>
 
-                <form method="POST" action="{{ route('admin.store') }}" class="p-5" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('admin.product.store') }}" class="p-5" enctype="multipart/form-data">
                     @include('admin.sell.form')
                     <div class="form-group mb-0 mt-3">
                         <button type="submit" class="btn btn-block btn-primary">

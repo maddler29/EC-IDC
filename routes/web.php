@@ -14,7 +14,7 @@
 
 use Hamcrest\Internal\SelfDescribingValue;
 
-Route::namespace('User')->group(function () {
+Route::namespace('User')->prefix('user')->name('user.')->group(function () {
 
     // ログイン認証関連
     Auth::routes([
@@ -30,30 +30,51 @@ Route::namespace('User')->group(function () {
         Route::resource('home', 'HomeController', ['only' => 'index']);
 
     });
+
 });
-
-
+Route::namespace('User')->name('user.')->group(function () {
 Route::name('product.')
     ->group(function () {
-        Route::get('/', 'User\ProductController@index')->name('index');
+        Route::get('/', 'ProductController@index')->name('index');
         // 5-1Route::middleware('auth')
-        Route::get('/product/{id}', 'User\ProductController@show')->name('show');
+        Route::get('/product/{id}', 'ProductController@show')->name('show');
     });
-
-
-
-
 Route::name('line_item.')
     ->group(function () {
-        Route::post('/line_item/create', 'User\LineItemController@create')->name('create');
-        Route::post('/line_item/delete', 'User\LineItemController@delete')->name('delete');
+        Route::post('/line_item/create', 'LineItemController@create')->name('create');
+        Route::post('/line_item/delete', 'LineItemController@delete')->name('delete');
     });
 Route::name('cart.')
     ->group(function () {
-        Route::get('/cart', 'User\CartController@index')->name('index');
-        Route::get('/cart/checkout', 'User\CartController@checkout')->name('checkout');
-        Route::get('/cart/success', 'User\CartController@success')->name('success');
+        Route::get('/cart', 'CartController@index')->name('index');
+        Route::get('/cart/checkout', 'CartController@checkout')->name('checkout');
+        Route::get('/cart/success', 'CartController@success')->name('success');
     });
+});
+Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
+
+    // ログイン認証関連
+    Auth::routes([
+        'register' => true,
+        'reset'    => true,
+        'verify'   => false
+    ]);
+
+    // ログイン認証後
+    Route::middleware('auth:admin')->group(function () {
+        Route::resource('/product', 'SellController');
+        // TOPページ
+        Route::resource('home', 'HomeController', ['only' => 'index']);
+
+    });
+
+});
+
+
+
+
+
+
 
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Notifications\Admin;
 
+use App\Mail\BareMail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -19,7 +20,7 @@ class PasswordResetNotification extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(string $token, BareMail $mail)
     {
         $this->token = $token;
         $this->mail = $mail;
@@ -38,9 +39,8 @@ class PasswordResetNotification extends Notification
 
     /**
      * Get the mail representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
+     * @param $notifiable
+     * @return BareMail
      */
     public function toMail($notifiable)
     {

@@ -24,7 +24,7 @@
                     <ul class="navbar-nav mr-auto">
                         <li>
                             {{--出品画面へのリンク作成--}}
-                            <a class="fas fa-camera" href="{{ route('admin.create') }}">商品を出品する</a>
+                            <a class="fas fa-camera" href="{{ route('admin.product.create') }}">商品を出品する</a>
                         </li>
 
                     </ul>
@@ -44,7 +44,7 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ Auth::user()->name ?? '' }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
