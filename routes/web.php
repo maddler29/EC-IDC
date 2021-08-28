@@ -59,10 +59,10 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         'reset'    => true,
         'verify'   => false
     ]);
-    Route::resource('/product', 'SellController')->only(['create','show']);
+
     // ログイン認証後
     Route::middleware('auth:admin')->group(function () {
-        Route::resource('/product', 'SellController')->except(['create','show']);
+        Route::resource('/product', 'SellController');
         // TOPページ
         Route::resource('home', 'HomeController', ['only' => 'index']);
 
