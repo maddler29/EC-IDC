@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Mypage\Profile\EditRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
