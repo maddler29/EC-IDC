@@ -21,7 +21,7 @@
 
                 <div class="font-weight-bold text-center border-bottom pb-3 pt-3" style="font-size: 24px">プロフィール編集</div>
 
-                <form method="POST" action="{{ route('mypage.update') }}" class="p-5" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('admin.mypage.update') }}" class="p-5" enctype="multipart/form-data">
                     @csrf
 
                     {{-- アバター画像 --}}
@@ -44,7 +44,7 @@
                     </div>
 
                     <div class="form-group mb-0 mt-3">
-                        <button type="submit" class="btn btn-block btn-secondary">
+                        <button type="submit" class="btn btn-block btn-primary">
                             保存
                         </button>
                     </div>
