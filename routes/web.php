@@ -28,10 +28,13 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
 
         // TOPページ
         Route::resource('home', 'HomeController', ['only' => 'index']);
-
+        //mypage
+        Route::get('mypage/edit', 'ProfileController@edit')->name('mypage.edit');
+        Route::post('mypage/edit', 'ProfileController@update')->name('mypage.update');
     });
 
 });
+
 Route::namespace('User')->name('user.')->group(function () {
 Route::name('product.')
     ->group(function () {
