@@ -16,7 +16,7 @@ class ProfileController extends Controller
     public function edit()
     {
         return view('User/mypage.edit')
-            ->with('admin', Auth::user());
+            ->with('user', Auth::user());
     }
 
     public function update(EditRequest $request)
