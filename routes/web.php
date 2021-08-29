@@ -62,9 +62,14 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 
     // ログイン認証後
     Route::middleware('auth:admin')->group(function () {
-        Route::resource('/product', 'SellController');
+
         // TOPページ
         Route::resource('home', 'HomeController', ['only' => 'index']);
+        //Sell
+        Route::resource('/product', 'SellController');
+        //mypage
+        Route::get('mypage/edit', 'ProfileController@edit')->name('mypage.edit');
+        Route::post('mypage/edit', 'ProfileController@update')->name('mypage.update');
 
     });
 
