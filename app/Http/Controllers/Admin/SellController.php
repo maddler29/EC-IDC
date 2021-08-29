@@ -25,7 +25,9 @@ class SellController extends Controller
      */
     public function create()
     {
-        return view('admin/sell.create');
+        $products = Product::orderBy('sort_no')->get();
+        return view('admin/sell.create')
+            ->with('products', $products);
     }
 
     /**
