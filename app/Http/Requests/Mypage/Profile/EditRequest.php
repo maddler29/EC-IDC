@@ -24,7 +24,8 @@ class EditRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:50',
+            'avatar' => 'file|image',
+            'name'   => 'required|string|max:50',
         ];
     }
 }

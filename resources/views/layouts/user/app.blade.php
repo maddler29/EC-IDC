@@ -21,10 +21,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
-
                         <li>
                             <a class="fas fa-shopping-cart" href="{{ route('user.cart.index') }}"></a>
+                        </li>
+                        <li>
+                            <a href="{{ route('user.mypage.edit') }}">
+                                プロフィール編集
+                            </a>
                         </li>
                     </ul>
 

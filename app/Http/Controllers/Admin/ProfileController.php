@@ -28,16 +28,16 @@ class ProfileController extends Controller
 
     public function update(EditRequest $request)
     {
-        $user = Auth::user();
+        $admin = Auth::user();
 
-        $user->name = $request->input('name');
+        $admin->name = $request->input('name');
 
         if ($request->has('avatar')) {
             $fileName = $this->saveAvatar($request->file('avatar'));
-            $user->avatar_file_name = $fileName;
+            $admin->avatar_file_name = $fileName;
         }
 
-        $user->save();
+        $admin->save();
 
         return redirect()->back()
             ->with('status', 'プロフィールを変更しました。');
