@@ -41,11 +41,11 @@
 
 {{-- アイテムカテゴリ --}}
 <div class="form-group mt-3">
-    <label for="category">カテゴリ</label>
+    <label for="category">アイテムカテゴリ</label>
     <select name="item_category" class="custom-select form-control @error('item_category') is-invalid @enderror">
-        @foreach ($products as $prodct)
-        <optgroup label="{{$product->name}}">
-            @foreach ($product->item_categories as $item_category)
+        @foreach ($gender_categories as $gender_category)
+        <optgroup label="{{$gender_category->gender}}">
+            @foreach ($gender_category->item_categories as $item_category)
             <option value="{{$item_category->id}}" {{old('item_category') == $item_category->id ? 'selected': ''}}>
                 {{$item_category->item_name}}
             </option>
@@ -61,11 +61,11 @@
 </div>
 {{-- ブランドカテゴリ --}}
 <div class="form-group mt-3">
-    <label for="category">カテゴリ</label>
+    <label for="category">ブランドカテゴリ</label>
     <select name="brand_category" class="custom-select form-control @error('brand_category') is-invalid @enderror">
-        @foreach ($products as $prodct)
-        <optgroup label="{{$product->name}}">
-            @foreach ($product->brand_categories as $brand_category)
+        @foreach ($gender_categories as $gender_category)
+        <optgroup label="{{$gender_category->gender}}">
+            @foreach ($gender_category->brand_categories as $brand_category)
             <option value="{{$brand_category->id}}" {{old('brand_category') == $brand_category->id ? 'selected': ''}}>
                 {{$brand_category->brand_name}}
             </option>

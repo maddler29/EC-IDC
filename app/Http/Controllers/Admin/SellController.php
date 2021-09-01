@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\GenderCategory;
 use App\Http\Controllers\Controller;
 
 use App\Models\Product;
@@ -25,9 +26,9 @@ class SellController extends Controller
      */
     public function create()
     {
-        $products = Product::orderBy('sort_no')->get();
+        $gender_categories = GenderCategory::orderBy('sort_no')->get();
         return view('admin/sell.create')
-            ->with('products', $products);
+            ->with('gender_categories', $gender_categories);
     }
 
     /**
