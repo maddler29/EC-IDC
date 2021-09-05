@@ -36,6 +36,7 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
 
 Route::namespace('User')->name('user.')->group(function () {
 
+
     Route::name('product.')
         ->group(function () {
             Route::get('/', 'ProductController@index')->name('index');

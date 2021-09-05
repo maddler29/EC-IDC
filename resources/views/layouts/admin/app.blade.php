@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title') |{{ config('app.name', 'Laravel') }}</title>
@@ -8,6 +9,7 @@
     <!-- Bootstrap Font Awesome-->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 </head>
+
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
@@ -37,31 +39,31 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @unless (Auth::guard('admin')->check())
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin.login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('admin.register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('admin.register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.login') }}">{{ __('Login') }}</a>
+                        </li>
+                        @if (Route::has('admin.register'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.register') }}">{{ __('Register') }}</a>
+                        </li>
+                        @endif
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name ?? '' }} <span class="caret"></span>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('admin.logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
 
-                                    <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name ?? '' }} <span class="caret"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('admin.logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
                         @endunless
                     </ul>
                 </div>
@@ -77,4 +79,5 @@
     <!-- MDBootstrap JavaScript -->
     <script type="text/javascript" src="/js/mdb.min.js"></script>
 </body>
+
 </html>
