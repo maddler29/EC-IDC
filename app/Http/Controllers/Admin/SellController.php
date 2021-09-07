@@ -48,8 +48,10 @@ class SellController extends Controller
         $items->description = $request->input('description');
         $items->image = $request->input('image');
         $items->price = $request->input('price');
+        $items->size = $request->input('size');
+        $items->material = $request->input('material');
         $items->save();
-        // $items->size = $request->input('size');
+
         // カテゴリーidを作成し連携
         return redirect()->route('admin/sell.index');
     }
@@ -99,6 +101,8 @@ class SellController extends Controller
         }
 
         $items->price = $request->input('price');
+        $items->size = $request->input('size');
+        $items->material = $request->input('material');
         $items->save();
         // $items->size = $request->input('size');
         // カテゴリーidを作成し連携
