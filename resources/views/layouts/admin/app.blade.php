@@ -78,6 +78,7 @@
     <script src="{{ mix('js/app.js') }}"></script>
     <!-- MDBootstrap JavaScript -->
     <script type="text/javascript" src="/js/mdb.min.js"></script>
+    @yield('script')
 </body>
 
 </html>

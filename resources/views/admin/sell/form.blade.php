@@ -4,10 +4,15 @@
 <span class="item-image-form image-picker">
     <input type="file" name="image" class="d-none" accept="image/png,image/jpeg,image/gif" id="image" required />
     <label for="image" class="d-inline-block" role="button">
-        @if (!empty($prodct->image))
-        <img src="/images/item-image-default.png" style="object-fit: cover; width: 300px; height: 300px;">
+{{--        @if (!empty($prodct->image))--}}
+{{--            <img src="/storage/products/{{$product->image ?? ''}}" style="object-fit: cover; width: 300px; height: 300px;">--}}
+{{--        @else--}}
+{{--            <img src="/images/item-image-default.png" style="object-fit: cover; width: 300px; height: 300px;">--}}
+{{--        @endif--}}
+        @if (!empty($product->image))
+            <img src="/storage/avatars/{{$product->image}}" style="object-fit: cover; width: 250px; height: 250px;">
         @else
-        <img src="/storage/products/{{$product->image ?? ''}}" style="object-fit: cover; width: 300px; height: 300px;">
+            <img src="/images/item-image-default.png" style="object-fit: cover; width: 250px; height: 250px;">
         @endif
     </label>
 </span>

@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Http\File;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class SellController extends Controller
 {
@@ -83,15 +87,54 @@ class SellController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $items = Product::find($id);
         $items->name = $request->input('name');
         $items->description = $request->input('description');
-        $items->image = $request->input('image');
+//        $items->image = $request->input('image');
+
+        if ($request->has('avatar')) {
+            $fileName = $this->saveAvatar($request->file('avatar'));
+            $items->image = $fileName;
+        }
+
         $items->price = $request->input('price');
         $items->save();
         // $items->size = $request->input('size');
         // カテゴリーidを作成し連携
-        return redirect()->route('admin/sell.index');
+        return redirect()->route('admin/sell.index')
+            ->with('status', 'プロフィールを変更しました。');
+    }
+
+    /**
+     * アバター画像をリサイズして保存します
+     *
+     * @param UploadedFile $file アップロードされたアバター画像
+     * @return string ファイル名
+     */
+    private function saveAvatar(UploadedFile $file): string
+    {
+        // 一時ファイルを生成してパスを取得する(makeTempPathメソッド)
+        $tempPath = $this->makeTempPath();
+        // Intervention Imageを使用して、画像をリサイズ後、一時ファイルに保存。
+        Image::make($file)->fit(250, 250)->save($tempPath);
+        // Storageファサードを使用して画像をディスクに保存しています。
+        $filePath = Storage::disk('public')
+            ->putFile('avatars', new File($tempPath));
+
+        return basename($filePath);
+    }
+
+    /**
+     * 一時的なファイルを生成してパスを返します。
+     *
+     * @return string ファイルパス
+     */
+    private function makeTempPath(): string
+    {
+        $tmp_fp = tmpfile();
+        $meta   = stream_get_meta_data($tmp_fp);
+        return $meta["uri"];
     }
 
     /**
