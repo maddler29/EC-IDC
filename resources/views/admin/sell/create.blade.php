@@ -28,10 +28,8 @@
 
 @section('script')
     <script>
-        console.log('image');
         document.querySelector('.image-picker input')
             .addEventListener('change', (e) => {
-                console.log('image');
                 const input = e.target;
                 const reader = new FileReader();
                 reader.onload = (e) => {
