@@ -9,6 +9,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Http\File;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
@@ -43,71 +44,32 @@ class SellController extends Controller
      */
     public function store(Request $request)
     {
+
+        // $items = Auth::user();
         $items = new Product();
+        // 画像アップロード
+        if ($request->has('avatar')) {
+            $fileName = $this->saveAvatar($request->file('avatar'));
+            $items->image = $fileName;
+        }
+        // 商品名
         $items->name = $request->input('name');
+        // 商品の説明
         $items->description = $request->input('description');
-        $items->image = $request->input('image');
+        // アイテムカテゴリ
+        $items->item_category_id = $request->item_category;
+        // ブランドカテゴリ
+        $items->brand_category_id = $request->brand_category;
+        // 商品の価格
         $items->price = $request->input('price');
+        // 商品のサイズ
         $items->size = $request->input('size');
+        // 商品の素材
         $items->material = $request->input('material');
         $items->save();
 
         // カテゴリーidを作成し連携
         return redirect()->route('admin/sell.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $item = Product::find($id);
-        return view('admin/sell.show', ['item' => $item]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $item = Product::find($id);
-        return view('admin/sell.edit', ['item' => $item]);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-
-        $items = Product::find($id);
-        $items->name = $request->input('name');
-        $items->description = $request->input('description');
-//        $items->image = $request->input('image');
-
-        if ($request->has('avatar')) {
-            $fileName = $this->saveAvatar($request->file('avatar'));
-            $items->image = $fileName;
-        }
-
-        $items->price = $request->input('price');
-        $items->size = $request->input('size');
-        $items->material = $request->input('material');
-        $items->save();
-        // $items->size = $request->input('size');
-        // カテゴリーidを作成し連携
-        return redirect()->route('admin/sell.index')
-            ->with('status', 'プロフィールを変更しました。');
     }
 
     /**
@@ -153,4 +115,55 @@ class SellController extends Controller
         $item->delete();
         return redirect()->route('admin/sell.index');
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $item = Product::find($id);
+        return view('admin/sell.show', ['item' => $item]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $item = Product::find($id);
+        return view('admin/sell.edit', ['item' => $item]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+
+        $items = Product::find($id);
+        $items->name = $request->input('name');
+        $items->description = $request->input('description');
+//        $items->image = $request->input('image');
+
+        $items->price = $request->input('price');
+        $items->size = $request->input('size');
+        $items->material = $request->input('material');
+        $items->save();
+        // $items->size = $request->input('size');
+        // カテゴリーidを作成し連携
+        return redirect()->route('admin/sell.index')
+            ->with('status', 'プロフィールを変更しました。');
+    }
+
+
 }
