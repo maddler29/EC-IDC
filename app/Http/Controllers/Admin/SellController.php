@@ -9,6 +9,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Http\File;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
@@ -43,16 +44,81 @@ class SellController extends Controller
      */
     public function store(Request $request)
     {
+
+        // $items = Auth::user();
         $items = new Product();
+        // 画像アップロード
+
+
+        if ($request->has('image')) {
+            $fileName = $this->saveAvatar($request->file('image'));
+            $items->image = $fileName;
+        }
+        // 商品名
         $items->name = $request->input('name');
+        // 商品の説明
         $items->description = $request->input('description');
-        $items->image = $request->input('image');
+        // アイテムカテゴリ
+        $items->item_category_id = $request->item_category;
+        // ブランドカテゴリ
+        $items->brand_category_id = $request->brand_category;
+        // 商品の価格
         $items->price = $request->input('price');
+        // 商品のサイズ
         $items->size = $request->input('size');
+        // 商品の素材
         $items->material = $request->input('material');
         $items->save();
 
+
         // カテゴリーidを作成し連携
+        return redirect()->route('admin.product.index')->with('items', $items);
+    }
+
+    /**
+     * アバター画像をリサイズして保存します
+     *
+     * @param UploadedFile $file アップロードされたアバター画像
+     * @return string ファイル名
+     */
+    private function saveAvatar(UploadedFile $file): string
+    {
+
+        // 一時ファイルを生成してパスを取得する(makeTempPathメソッド)
+        $tempPath = $this->makeTempPath();
+
+        // Intervention Imageを使用して、画像をリサイズ後、一時ファイルに保存。
+        Image::make($file)->fit(250, 250)->save($tempPath);
+        // Storageファサードを使用して画像をディスクに保存しています。
+        $filePath = Storage::disk('public')
+            ->putFile('avatars', new File($tempPath));
+
+
+        return basename($filePath);
+    }
+
+    /**
+     * 一時的なファイルを生成してパスを返します。
+     *
+     * @return string ファイルパス
+     */
+    private function makeTempPath(): string
+    {
+        $tmp_fp = tmpfile();
+        $meta   = stream_get_meta_data($tmp_fp);
+        return $meta["uri"];
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $item = Product::find($id);
+        $item->delete();
         return redirect()->route('admin/sell.index');
     }
 
@@ -93,12 +159,7 @@ class SellController extends Controller
         $items = Product::find($id);
         $items->name = $request->input('name');
         $items->description = $request->input('description');
-//        $items->image = $request->input('image');
-
-        if ($request->has('avatar')) {
-            $fileName = $this->saveAvatar($request->file('avatar'));
-            $items->image = $fileName;
-        }
+        //        $items->image = $request->input('image');
 
         $items->price = $request->input('price');
         $items->size = $request->input('size');
@@ -108,49 +169,5 @@ class SellController extends Controller
         // カテゴリーidを作成し連携
         return redirect()->route('admin/sell.index')
             ->with('status', 'プロフィールを変更しました。');
-    }
-
-    /**
-     * アバター画像をリサイズして保存します
-     *
-     * @param UploadedFile $file アップロードされたアバター画像
-     * @return string ファイル名
-     */
-    private function saveAvatar(UploadedFile $file): string
-    {
-        // 一時ファイルを生成してパスを取得する(makeTempPathメソッド)
-        $tempPath = $this->makeTempPath();
-        // Intervention Imageを使用して、画像をリサイズ後、一時ファイルに保存。
-        Image::make($file)->fit(250, 250)->save($tempPath);
-        // Storageファサードを使用して画像をディスクに保存しています。
-        $filePath = Storage::disk('public')
-            ->putFile('avatars', new File($tempPath));
-
-        return basename($filePath);
-    }
-
-    /**
-     * 一時的なファイルを生成してパスを返します。
-     *
-     * @return string ファイルパス
-     */
-    private function makeTempPath(): string
-    {
-        $tmp_fp = tmpfile();
-        $meta   = stream_get_meta_data($tmp_fp);
-        return $meta["uri"];
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $item = Product::find($id);
-        $item->delete();
-        return redirect()->route('admin/sell.index');
     }
 }

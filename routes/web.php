@@ -73,7 +73,11 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         // TOPページ
         Route::resource('home', 'HomeController', ['only' => 'index']);
         //Sell
-        Route::resource('/product', 'SellController');
+        // Route::resource('/product', 'SellController');
+
+        Route::get('/product', 'SellController@index')->name('product.index');
+        Route::get('/product/create', 'SellController@create')->name('product.create');
+        Route::post('/product/store', 'SellController@store')->name('product.store');
         //mypage
         Route::get('mypage/edit', 'ProfileController@edit')->name('mypage.edit');
         Route::post('mypage/edit', 'ProfileController@update')->name('mypage.update');
