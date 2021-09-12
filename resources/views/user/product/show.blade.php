@@ -16,7 +16,7 @@
                 ¥{{ number_format($product->price) }}
             </div>
         </div>
-        {{-- size,material,item_category,gender_category,brand_category}}
+        {{-- size,material,item_category,gender_category,brand_category--}}
         {{ $product->description }}
         <form method="POST" action="{{ route('line_item.create') }}">
             @csrf

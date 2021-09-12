@@ -20,8 +20,9 @@ class SellController extends Controller
      */
     public function index()
     {
+
         return view('admin/sell.index')
-            ->with('products', Product::get());
+            ->with('items', Product::get());
     }
 
     /**
@@ -70,9 +71,8 @@ class SellController extends Controller
         $items->material = $request->input('material');
         $items->save();
 
-
         // カテゴリーidを作成し連携
-        return redirect()->route('admin.product.index')->with('items', $items);
+        return redirect()->route('admin.sell.index')->with('items', $items);
     }
 
     /**
