@@ -16,8 +16,8 @@
                 ¥{{ number_format($product->price) }}
             </div>
         </div>
+        {{-- size,material,item_category,gender_category,brand_category--}}
         {{ $product->description }}
-        {{--4-6カートのフォームを追加--}}
         <form method="POST" action="{{ route('line_item.create') }}">
             @csrf
             <input type="hidden" name="id" value="{{ $product->id }}" />

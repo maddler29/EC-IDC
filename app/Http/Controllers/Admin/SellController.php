@@ -20,8 +20,9 @@ class SellController extends Controller
      */
     public function index()
     {
+
         return view('admin/sell.index')
-            ->with('products', Product::get());
+            ->with('items', Product::get());
     }
 
     /**
@@ -48,8 +49,10 @@ class SellController extends Controller
         // $items = Auth::user();
         $items = new Product();
         // 画像アップロード
-        if ($request->has('avatar')) {
-            $fileName = $this->saveAvatar($request->file('avatar'));
+
+
+        if ($request->has('image')) {
+            $fileName = $this->saveAvatar($request->file('image'));
             $items->image = $fileName;
         }
         // 商品名
@@ -69,7 +72,7 @@ class SellController extends Controller
         $items->save();
 
         // カテゴリーidを作成し連携
-        return redirect()->route('admin/sell.index');
+        return redirect()->route('admin.sell.index')->with('items', $items);
     }
 
     /**
@@ -80,13 +83,16 @@ class SellController extends Controller
      */
     private function saveAvatar(UploadedFile $file): string
     {
+
         // 一時ファイルを生成してパスを取得する(makeTempPathメソッド)
         $tempPath = $this->makeTempPath();
+
         // Intervention Imageを使用して、画像をリサイズ後、一時ファイルに保存。
         Image::make($file)->fit(250, 250)->save($tempPath);
         // Storageファサードを使用して画像をディスクに保存しています。
         $filePath = Storage::disk('public')
             ->putFile('avatars', new File($tempPath));
+
 
         return basename($filePath);
     }
@@ -153,7 +159,7 @@ class SellController extends Controller
         $items = Product::find($id);
         $items->name = $request->input('name');
         $items->description = $request->input('description');
-//        $items->image = $request->input('image');
+        //        $items->image = $request->input('image');
 
         $items->price = $request->input('price');
         $items->size = $request->input('size');
@@ -164,6 +170,4 @@ class SellController extends Controller
         return redirect()->route('admin/sell.index')
             ->with('status', 'プロフィールを変更しました。');
     }
-
-
 }

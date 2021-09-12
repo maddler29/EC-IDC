@@ -14,7 +14,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ route('admin.sell.index') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -26,7 +26,7 @@
                     <ul class="navbar-nav mr-auto">
                         <li>
                             {{--出品画面へのリンク作成--}}
-                            <a class="fas fa-camera" href="{{ route('admin.product.create') }}">商品を出品する</a>
+                            <a class="fas fa-camera" href="{{ route('admin.sell.create') }}">商品を出品する</a>
                         </li>
                         <li>
                             <a href="{{ route('admin.mypage.edit') }}">
