@@ -17,19 +17,20 @@
                 <img src="{{ asset($item->image) }}" alt="{{ $item->name }}" class="product-cart-img" />
                 <div class="card-body">
                     <div class="card-product-name col-6">
-                        {{ $item->name }}
+                        商品名:{{ $item->name }}
                     </div>
                     <div class="card-quantity col-2">
-                        個
+                        {{-- {{ $item->line_item->quantity }}個 --}}
                     </div>
                     <div class="card__total-price col-3 text-center">
                         ¥{{ number_format($item->price) }}
                     </div>
                     {{--カート画面にゴミ箱アイコンを追加--}}
-                    <form method="delete" action="{{ route('admin.sell.delete') }}">
+                    <form method="post" action="{{ route('admin.sell.destroy', $item->id) }}">
                         @csrf
+                        @method('DELETE')
                         <div class="card__btn-trash col-1">
-                            {{-- <input type="hidden" name="id" value="{{ $item->pivot->id }}" /> --}}
+                            <input type="hidden" name="id" value="{{ $item->id }}" />
                             <button type="submit" class="fas fa-trash-alt btn"></button>
                         </div>
                     </form>

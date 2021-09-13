@@ -73,12 +73,12 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         // TOPページ
         Route::resource('home', 'HomeController', ['only' => 'index']);
         //Sell
-        // Route::resource('/product', 'SellController');
+        Route::resource('/product', 'SellController');
 
         Route::get('/sell', 'SellController@index')->name('sell.index');
         Route::get('/sell/create', 'SellController@create')->name('sell.create');
         Route::post('/sell/store', 'SellController@store')->name('sell.store');
-        Route::delete('/sell/delete', 'SellConttoller@destroy')->name('sell.delete');
+        Route::delete('/sell/delete/{id}', 'SellController@destroy')->name('sell.destroy');
         //mypage
         Route::get('mypage/edit', 'ProfileController@edit')->name('mypage.edit');
         Route::post('mypage/edit', 'ProfileController@update')->name('mypage.update');

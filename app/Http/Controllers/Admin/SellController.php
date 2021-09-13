@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\GenderCategory;
 use App\Http\Controllers\Controller;
 
+
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Http\File;
@@ -20,9 +21,10 @@ class SellController extends Controller
      */
     public function index()
     {
+        $items = Product::get();
 
         return view('admin/sell.index')
-            ->with('items', Product::get());
+            ->with('items', $items);
     }
 
     /**
@@ -49,7 +51,6 @@ class SellController extends Controller
         // $items = Auth::user();
         $items = new Product();
         // 画像アップロード
-
 
         if ($request->has('image')) {
             $fileName = $this->saveAvatar($request->file('image'));
@@ -119,7 +120,7 @@ class SellController extends Controller
     {
         $item = Product::find($id);
         $item->delete();
-        return redirect()->route('admin/sell.index');
+        return redirect()->route('admin.sell.index');
     }
 
     /**
