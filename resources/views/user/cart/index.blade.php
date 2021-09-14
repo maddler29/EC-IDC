@@ -14,7 +14,7 @@
         @foreach ($line_items as $item)
         <div class="card mb-3">
             <div class="row">
-                <img src="{{ asset($item->image) }}" alt="{{ $item->name }}" class="product-cart-img" />
+                <img src="/storage/avatars/{{}}" alt="{{ $item->name }}" class="product-cart-img" />
                 <div class="card-body">
                     <div class="card-product-name col-6">
                         {{ $item->name }}

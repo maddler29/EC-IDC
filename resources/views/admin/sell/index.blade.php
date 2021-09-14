@@ -14,12 +14,13 @@
         @foreach ($items as $item)
         <div class="card mb-3">
             <div class="row">
-                <img src="{{ asset($item->image) }}" alt="{{ $item->name }}" class="product-cart-img" />
+                <img src="/storage/avatars/{{$item->image}}" alt="{{ $item->name }}" class="product-cart-img" style="object-fit: cover; width: 200px; height: 200px;" />
                 <div class="card-body">
                     <div class="card-product-name col-6">
                         商品名:{{ $item->name }}
                     </div>
                     <div class="card-quantity col-2">
+                        {{--個数必要か？--}}
                         {{-- {{ $item->line_item->quantity }}個 --}}
                     </div>
                     <div class="card__total-price col-3 text-center">
@@ -34,6 +35,13 @@
                             <button type="submit" class="fas fa-trash-alt btn"></button>
                         </div>
                     </form>
+                    <form method="get" action="{{ route('admin.sell.edit', $item->id) }}">
+                        @csrf
+                        <div class="col-md-6 offset-md-4">
+                            <input type="hidden" name="id" value="{{ $item->id }}" />
+                            <button type="submit" class="btn btn-primary">編集</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -41,7 +49,7 @@
     </div>
 
     @else
-    <div class="cart__empty">
+    <div class=" cart__empty">
         商品が入っていません。
     </div>
     @endif

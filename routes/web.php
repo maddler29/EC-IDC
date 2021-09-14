@@ -78,7 +78,10 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::get('/sell', 'SellController@index')->name('sell.index');
         Route::get('/sell/create', 'SellController@create')->name('sell.create');
         Route::post('/sell/store', 'SellController@store')->name('sell.store');
+        Route::get('/sell/{id}/edit', 'SellController@edit')->name('sell.edit');
+        Route::patch('/sell/update/{id}', 'SellController@update')->name('sell.update');
         Route::delete('/sell/delete/{id}', 'SellController@destroy')->name('sell.destroy');
+
         //mypage
         Route::get('mypage/edit', 'ProfileController@edit')->name('mypage.edit');
         Route::post('mypage/edit', 'ProfileController@update')->name('mypage.update');
