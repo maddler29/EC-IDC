@@ -14,7 +14,7 @@
         @foreach ($line_items as $item)
         <div class="card mb-3">
             <div class="row">
-                <img src="/storage/avatars/{{}}" alt="{{ $item->name }}" class="product-cart-img" />
+                <img src="/storage/avatars/{{$item->image}}" alt="{{ $item->name }}" class="product-cart-img" />
                 <div class="card-body">
                     <div class="card-product-name col-6">
                         {{ $item->name }}
@@ -26,7 +26,7 @@
                         ￥{{ number_format($item->price * $item->pivot->quantity) }}
                     </div>
                     {{--カート画面にゴミ箱アイコンを追加--}}
-                    <form method="post" action="{{ route('line_item.delete') }}">
+                    <form method="post" action="{{ route('user.line_item.delete') }}">
                         @csrf
                         <div class="card__btn-trash col-1">
                             <input type="hidden" name="id" value="{{ $item->pivot->id }}" />
@@ -41,7 +41,7 @@
     <div class="cart__sub-total">
         小計：￥{{ number_format($total_price) }} 円
     </div>
-    <button onClick="location.href='{{ route('cart.checkout') }}'" class="cart__purchase btn btn-primary">
+    <button onClick="location.href='{{ route('user.cart.checkout') }}'" class="cart__purchase btn btn-primary">
         購入する
     </button>
     @else

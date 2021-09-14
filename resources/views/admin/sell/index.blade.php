@@ -19,6 +19,10 @@
                     <div class="card-product-name col-6">
                         商品名:{{ $item->name }}
                     </div>
+                    <div class="card-product-name col-6">
+                        {{--アイテムカテゴリ表示 多対多のテーブル関係を作成する必要がありそう--}}
+                        {{--種類:{{ $item->item_category_id->item_name }}--}}
+                    </div>
                     <div class="card-quantity col-2">
                         {{--個数必要か？--}}
                         {{-- {{ $item->line_item->quantity }}個 --}}
@@ -30,7 +34,7 @@
                     <form method="post" action="{{ route('admin.sell.destroy', $item->id) }}">
                         @csrf
                         @method('DELETE')
-                        <div class="card__btn-trash col-1">
+                        <div class="card__btn-trash col-3">
                             <input type="hidden" name="id" value="{{ $item->id }}" />
                             <button type="submit" class="fas fa-trash-alt btn"></button>
                         </div>
