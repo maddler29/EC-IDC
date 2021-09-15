@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\GenderCategory;
 use App\Http\Controllers\Controller;
 
+
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Http\File;
@@ -20,9 +21,10 @@ class SellController extends Controller
      */
     public function index()
     {
+        $items = Product::get();
 
         return view('admin/sell.index')
-            ->with('items', Product::get());
+            ->with('items', $items);
     }
 
     /**
@@ -49,7 +51,6 @@ class SellController extends Controller
         // $items = Auth::user();
         $items = new Product();
         // 画像アップロード
-
 
         if ($request->has('image')) {
             $fileName = $this->saveAvatar($request->file('image'));
@@ -119,7 +120,7 @@ class SellController extends Controller
     {
         $item = Product::find($id);
         $item->delete();
-        return redirect()->route('admin/sell.index');
+        return redirect()->route('admin.sell.index');
     }
 
     /**
@@ -142,9 +143,13 @@ class SellController extends Controller
      */
     public function edit($id)
     {
-        $item = Product::find($id);
-        return view('admin/sell.edit', ['item' => $item]);
+        $gender_categories = GenderCategory::orderBy('sort_no')->get();
+        $items = Product::find($id);
+        return view('admin/sell.edit', ['items' => $items])
+            ->with('gender_categories', $gender_categories);
     }
+
+
 
     /**
      * Update the specified resource in storage.
@@ -156,18 +161,25 @@ class SellController extends Controller
     public function update(Request $request, $id)
     {
 
+
         $items = Product::find($id);
         $items->name = $request->input('name');
         $items->description = $request->input('description');
-        //        $items->image = $request->input('image');
-
+        if ($request->has('image')) {
+            $fileName = $this->saveAvatar($request->file('image'));
+            $items->image = $fileName;
+        }
+        // アイテムカテゴリ
+        $items->item_category_id = $request->item_category;
+        // ブランドカテゴリ
+        $items->brand_category_id = $request->brand_category;
         $items->price = $request->input('price');
         $items->size = $request->input('size');
         $items->material = $request->input('material');
         $items->save();
-        // $items->size = $request->input('size');
+
         // カテゴリーidを作成し連携
-        return redirect()->route('admin/sell.index')
+        return redirect()->route('admin.sell.index')
             ->with('status', 'プロフィールを変更しました。');
     }
 }
