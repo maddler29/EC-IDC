@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use phpDocumentor\Reflection\Types\Integer;
 
 class ProductRequest extends FormRequest
 {
@@ -31,7 +32,6 @@ class ProductRequest extends FormRequest
             'size'        => 'required|alpha_num',
             'material'    => 'required|string',
             'category'    => 'required|integer',
-
         ];
     }
     public function attributes()
@@ -44,7 +44,6 @@ class ProductRequest extends FormRequest
             'size'        => 'サイズ',
             'material'    => '素材',
             'category'    => 'カテゴリ',
-
         ];
     }
 }
