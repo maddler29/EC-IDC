@@ -30,6 +30,8 @@ class ProductRequest extends FormRequest
             'price'       => 'required|integer|min:100|max:9999999',
             'size'        => 'required|alpha_num',
             'material'    => 'required|string',
+            'category'    => 'required|integer',
+
         ];
     }
     public function attributes()
@@ -41,6 +43,8 @@ class ProductRequest extends FormRequest
             'price'       => '販売価格',
             'size'        => 'サイズ',
             'material'    => '素材',
+            'category'    => 'カテゴリ',
+
         ];
     }
 }
