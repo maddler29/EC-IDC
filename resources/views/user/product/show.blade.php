@@ -7,7 +7,7 @@
 @section('content')
 <div class="container">
     <div class="product">
-        <img src="{{ asset($product->image) }}" class="product-img" />
+        <img src=" /storage/avatars/{{$product->image}}" class="product-img" />
         <div class="product__content-header text-center">
             <div class="product__name">
                 {{ $product->name }}
@@ -16,9 +16,9 @@
                 ¥{{ number_format($product->price) }}
             </div>
         </div>
+        {{-- size,material,item_category,gender_category,brand_category--}}
         {{ $product->description }}
-        {{--4-6カートのフォームを追加--}}
-        <form method="POST" action="{{ route('line_item.create') }}">
+        <form method="POST" action="{{ route('user.line_item.create') }}">
             @csrf
             <input type="hidden" name="id" value="{{ $product->id }}" />
             <div class="product__quantity">
