@@ -23,8 +23,35 @@ class SellController extends Controller
     {
         $items = Product::get();
 
+        $item_categories = GenderCategory::query()
+            ->with([
+                'item_categories' => function ($query) {
+                    $query->orderBy('sort_no');
+                }
+            ])
+            ->orderBy('sort_no')
+            ->get();
+//        dd($item_categories);
+
+        $brand_categories = GenderCategory::query()
+            ->with([
+                'brand_categories' => function ($query) {
+                    $query->orderBy('sort_no');
+                }
+            ])
+            ->orderBy('sort_no')
+            ->get();
+
+//            $defaults = [
+//                Request::input('category', ''),
+//                Request::input('keyword', ''),
+//            ];
+//        dd($brand_categories);
+
         return view('admin/sell.index')
-            ->with('items', $items);
+            ->with('items', $items)
+            ->with('item_categories', $item_categories)
+            ->with('brand_categories', $brand_categories);
     }
 
     /**

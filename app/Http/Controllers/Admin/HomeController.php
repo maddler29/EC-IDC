@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Models\GenderCategory;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\ItemCategory;
+use App\Models\BrandCategory;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -24,8 +26,9 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index(Request $request)
+    public function index()
     {
+//        $user = Auth::user();
         $item_categories = GenderCategory::query()
             ->with([
                 'item_categories' => function ($query) {
