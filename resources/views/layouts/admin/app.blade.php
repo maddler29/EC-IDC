@@ -36,6 +36,7 @@
                     </ul>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+<<<<<<< HEAD
                         {{-- 検索フォーム --}}
                         <form class="form-inline" method="GET" action="{{ route('admin.home.index') }}">
                             <div class="input-group">
@@ -75,6 +76,8 @@
                         </form>
 
 
+=======
+>>>>>>> 1651110a675701f5ef08e3af8fe15e06b46b3daf
                         <!-- Authentication Links -->
                         {{--adminがGuard で 認証されたユーザーだけにアクセス許可していなければ、
                         ログインしなければならない--}}
