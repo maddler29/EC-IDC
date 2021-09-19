@@ -36,48 +36,6 @@
                     </ul>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-<<<<<<< HEAD
-                        {{-- 検索フォーム --}}
-                        <form class="form-inline" method="GET" action="{{ route('admin.home.index') }}">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <select class="custom-select" name="category">
-                                        <option value="">全て</option>
-                                        {{-- @foreach ($brand_categories as $category)
-                                        <option value="gender:{{$category->id}}" class="font-weight-bold">{{$category->gender}}</option>
-                                        @foreach ($category->brand_categories as $brand)
-                                        <option value="brand:{{$brand->id}}">　{{$brand->brand_name}}</option>
-                                        @endforeach
-                                        @endforeach --}}
-                                    </select>
-                                </div>
-                            </div>
-                        </form>
-                        <form class="form-inline" method="GET" action="{{ route('admin.home.index') }}">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <select class="custom-select" name="category">
-                                        <option value="">全て</option>
-                                        {{--@foreach ($item_categories as $category)
-                                        <option value="gender:{{$category->id}}" class="font-weight-bold">{{$category->gender}}</option>
-                                        @foreach ($category->item_categories as $item)
-                                        <option value="item:{{$item->id}}">　{{$item->item_name}}</option>
-                                        @endforeach
-                                        @endforeach--}}
-                                    </select>
-                                </div>
-                                <input type="text" name="keyword" class="form-control" aria-label="Text input with dropdown button" placeholder="キーワード検索">
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-outline-dark">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-
-
-=======
->>>>>>> 1651110a675701f5ef08e3af8fe15e06b46b3daf
                         <!-- Authentication Links -->
                         {{--adminがGuard で 認証されたユーザーだけにアクセス許可していなければ、
                         ログインしなければならない--}}
