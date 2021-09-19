@@ -33,7 +33,7 @@ class SellController extends Controller
             ])
             ->orderBy('sort_no')
             ->get();
-//        dd($item_categories);
+        //        dd($item_categories);
 
         $brand_categories = GenderCategory::query()
             ->with([
@@ -44,11 +44,11 @@ class SellController extends Controller
             ->orderBy('sort_no')
             ->get();
 
-//            $defaults = [
-//                Request::input('category', ''),
-//                Request::input('keyword', ''),
-//            ];
-//        dd($brand_categories);
+        //            $defaults = [
+        //                Request::input('category', ''),
+        //                Request::input('keyword', ''),
+        //            ];
+        //        dd($brand_categories);
 
         return view('admin/sell.index')
             ->with('items', $items)
@@ -209,6 +209,6 @@ class SellController extends Controller
 
         // カテゴリーidを作成し連携
         return redirect()->route('admin.sell.index')
-            ->with('status', 'プロフィールを変更しました。');
+            ->with('status', '商品を変更しました。');
     }
 }
