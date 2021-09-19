@@ -44,15 +44,15 @@ class HomeController extends Controller
             ->orderBy('sort_no')
             ->get();
 
-//            $defaults = [
-//                Request::input('category', ''),
-//                Request::input('keyword', ''),
-//            ];
+        //            $defaults = [
+        //                Request::input('category', ''),
+        //                Request::input('keyword', ''),
+        //            ];
 
         return view('admin.home')
-//            ->with('user', $user)
+            //            ->with('user', $user)
             ->with('item_categories', $item_categories)
             ->with('brand_categories', $brand_categories);
-//        ->with('defaults', $defaults);
+        //        ->with('defaults', $defaults);
     }
 }

@@ -21,6 +21,11 @@
                 <div class="card-body">
                     <p class="card-title">{{ $product->name }}</p>
                     <p class="card-text">サイズ : {{ $product->size }}</p>
+                    @if(($product->item_categories->gender_id ) == 1)
+                    <p>Men's</p>
+                    @else
+                    <P>Wemen's</P>
+                    @endif
                     <p class="card-text">¥{{ number_format($product->price) }}</p>
 
                     {{-- name,size,image,gender_category,item_category,brand_category--}}

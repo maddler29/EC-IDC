@@ -14,7 +14,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('admin/product') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -42,12 +42,12 @@
                                 <div class="input-group-prepend">
                                     <select class="custom-select" name="category">
                                         <option value="">全て</option>
-                                        @foreach ($brand_categories as $category)
-                                            <option value="gender:{{$category->id}}" class="font-weight-bold">{{$category->gender}}</option>
-                                            @foreach ($category->brand_categories as $brand)
-                                                <option value="brand:{{$brand->id}}">　{{$brand->brand_name}}</option>
-                                            @endforeach
+                                        {{-- @foreach ($brand_categories as $category)
+                                        <option value="gender:{{$category->id}}" class="font-weight-bold">{{$category->gender}}</option>
+                                        @foreach ($category->brand_categories as $brand)
+                                        <option value="brand:{{$brand->id}}">　{{$brand->brand_name}}</option>
                                         @endforeach
+                                        @endforeach --}}
                                     </select>
                                 </div>
                             </div>
@@ -57,12 +57,12 @@
                                 <div class="input-group-prepend">
                                     <select class="custom-select" name="category">
                                         <option value="">全て</option>
-                                        @foreach ($item_categories as $category)
-                                            <option value="gender:{{$category->id}}" class="font-weight-bold">{{$category->gender}}</option>
-                                            @foreach ($category->item_categories as $item)
-                                                <option value="item:{{$item->id}}">　{{$item->item_name}}</option>
-                                            @endforeach
+                                        {{--@foreach ($item_categories as $category)
+                                        <option value="gender:{{$category->id}}" class="font-weight-bold">{{$category->gender}}</option>
+                                        @foreach ($category->item_categories as $item)
+                                        <option value="item:{{$item->id}}">　{{$item->item_name}}</option>
                                         @endforeach
+                                        @endforeach--}}
                                     </select>
                                 </div>
                                 <input type="text" name="keyword" class="form-control" aria-label="Text input with dropdown button" placeholder="キーワード検索">

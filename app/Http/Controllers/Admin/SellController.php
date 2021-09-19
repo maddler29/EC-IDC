@@ -21,7 +21,9 @@ class SellController extends Controller
      */
     public function index()
     {
-        $items = Product::get();
+        $items = Product::with('item_categories', 'brand_categories')
+            ->get();
+
 
         return view('admin/sell.index')
             ->with('items', $items);

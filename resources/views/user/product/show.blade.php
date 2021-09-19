@@ -12,12 +12,11 @@
             <div class="product__name">
                 {{ $product->name }}
             </div>
-            <div class="product__price">
-                ¥{{ number_format($product->price) }}
-            </div>
+            <p>¥{{ number_format($product->price) }}</p>
+            <p> {{ $product->description }}</p>
         </div>
         {{-- size,material,item_category,gender_category,brand_category--}}
-        {{ $product->description }}
+
         <form method="POST" action="{{ route('user.line_item.create') }}">
             @csrf
             <input type="hidden" name="id" value="{{ $product->id }}" />
