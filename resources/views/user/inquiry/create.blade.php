@@ -1,6 +1,10 @@
 @extends('layouts.user.app')
-@section('content')
 
+@section('title')
+お問い合わせ
+@endsection
+
+@section('content')
 {{-- エラーメッセージ表示 --}}
 @if ($errors->any())
 <div class="alert alert-danger">

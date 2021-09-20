@@ -16,8 +16,12 @@ class InquiryController extends Controller
 
     public function store(InquiryRequest $request)
     {
+        $inputs = new Inquiry();
+        $inputs->title = $request->input('title');
+        $inputs->body = $request->input('body');
+        $inputs->email = $request->input('email');
+        $inputs->save();
 
-        Inquiry::create($request);
         return back()->with('message', 'メールを送信したのでご確認ください');
     }
 }

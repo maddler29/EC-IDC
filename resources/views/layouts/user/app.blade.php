@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title') |{{ config('app.name', 'Laravel') }}</title>
@@ -7,6 +8,7 @@
     <!-- Bootstrap Font Awesome-->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 </head>
+
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
@@ -19,48 +21,43 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        <li>
-                            <a class="fas fa-shopping-cart" href="{{ route('user.cart.index') }}"></a>
-                        </li>
-                        <li>
-                            <a href="{{ route('user.mypage.edit') }}">
-                                プロフィール編集
-                            </a>
-                        </li>
-                    </ul>
-
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @unless(Auth::guard('user')->check())
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('user.login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('user.register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('user.register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user.login') }}">{{ __('Login') }}</a>
+                        </li>
+                        @if (Route::has('user.register'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user.register') }}">{{ __('Register') }}</a>
+                        </li>
+                        @endif
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="fas fa-shopping-cart dropdown-item" href="{{ route('user.cart.index') }}">
+                                    カート
                                 </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('user.logout') }}"
-                                       onclick="event.preventDefault();
+                                <a class="dropdown-item" href="{{ route('user.inquiry.create') }}">
+                                    お問い合わせ
+                                </a>
+                                <a class="dropdown-item" href="{{ route('user.mypage.edit') }}">
+                                    プロフィール編集
+                                </a>
+                                <a class="dropdown-item" href="{{ route('user.logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
+                                    {{ __('Logout') }}
+                                </a>
+                                <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
                         @endunless
                     </ul>
                 </div>
@@ -76,4 +73,5 @@
     <!-- MDBootstrap JavaScript -->
     <script type="text/javascript" src="/js/mdb.min.js"></script>
 </body>
+
 </html>
