@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Inquiry;
 use App\Http\Requests\InquiryRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 
 class InquiryController extends Controller
 {
@@ -21,6 +22,10 @@ class InquiryController extends Controller
         $inputs->body = $request->input('body');
         $inputs->email = $request->input('email');
         $inputs->save();
+
+        //お問い合わせ内容をMailableを使用して管理者とuserni送る処理
+        // Mail::to(config('mail.admin'))->send(new ContactForm($inputs));
+        // Mail::to($inputs['email'])->send(new ContactForm($inputs));
 
         return back()->with('message', 'メールを送信したのでご確認ください');
     }
