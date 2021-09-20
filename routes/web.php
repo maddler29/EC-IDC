@@ -57,6 +57,9 @@ Route::namespace('User')->name('user.')->group(function () {
                 Route::get('/cart/success', 'CartController@success')->name('success');
             });
     });
+
+    Route::get('/inquiry/create', 'InquiryController@create')->name('inquiry.create');
+    Route::post('/inquiry/store', 'InquiryController@store')->name('inquiry.store');
 });
 Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 
