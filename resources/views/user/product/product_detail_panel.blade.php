@@ -7,14 +7,9 @@
   <div class="col-6">
     <table class="table table-bordered">
       <tr>
-        <th>出品者</th>
+        <th>材質</th>
         <td>
-          @if (!empty($user->avatar_file_name))
-          <img src="/storage/avatars/{{$user->avatar_file_name}}" class="rounded-circle" style="object-fit: cover; width: 35px; height: 35px;">
-          @else
-          <img src="/images/avatar-default.svg" class="rounded-circle" style="object-fit: cover; width: 35px; height: 35px;">
-          @endif
-
+          {{$product->material}}
         </td>
       </tr>
       <tr>
