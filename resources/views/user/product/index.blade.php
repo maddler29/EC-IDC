@@ -33,14 +33,15 @@
                     </div>
                     <div class="card-body">
                         <h5>{{ $product->name }}</h5>
-                        <p class="text-muted">サイズ : {{ $product->size }} /
+                        <p class="text-muted">サイズ : 性別 {{ $product->size }} /
                             @if(($product->item_categories->gender_id ) == 1)
                             Men's
                             @else
                             Wemen's
                             @endif
                         </p>
-                        <p class="text-muted">サイズ : {{ $product->brand_categories->brand_name }} /
+                        <p class="text-muted">ブランド : アイテム </br>
+                            {{ $product->brand_categories->brand_name }} /
                             {{$product->item_categories->item_name }}
                         </p>
                     </div>
