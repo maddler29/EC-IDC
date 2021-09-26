@@ -24,6 +24,7 @@ class CreateProductsTable extends Migration
             $table->integer('price');
             $table->string('size');
             $table->string('material');
+            $table->string('state');
 
             $table->foreign('item_category_id')->references('id')->on('item_categories')->onDelete('cascade');
             $table->foreign('brand_category_id')->references('id')->on('brand_categories')->onDelete('cascade');

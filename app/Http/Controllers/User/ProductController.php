@@ -10,11 +10,16 @@ class ProductController extends Controller
 {
     public function index()
     {
+
+        $items = Product::orderByRaw("FIELD(state, '" . Product::STATE_SELLING . "', '" . Product::STATE_BOUGHT . "')")
+            ->orderBy('id', 'DESC')
+            ->paginate(9);
+
         return view('user.product.index')
             // withメソッドではBladeテンプレートに値を渡すことができます。
             // Eloquentのgetメソッドを用いてproductsテーブルの全データ取得し、
             // productsという変数名でBladeテンプレートに渡しています。
-            ->with('products', Product::get());
+            ->with('products', $items);
     }
 
     public function show($id)

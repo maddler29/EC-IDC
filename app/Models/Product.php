@@ -7,7 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    // 4-4
+    // 出品中
+    const STATE_SELLING = 'selling';
+    // 購入済み
+    const STATE_BOUGHT = 'bought';
+
     public function carts()
     {
         return $this->belongsToMany(
@@ -30,5 +34,15 @@ class Product extends Model
             BrandCategory::class,
             'brand_category_id'
         );
+    }
+
+    public function getIsStateSellingAttribute()
+    {
+        return $this->state === self::STATE_SELLING;
+    }
+
+    public function getIsStateBoughtAttribute()
+    {
+        return $this->state === self::STATE_BOUGHT;
     }
 }

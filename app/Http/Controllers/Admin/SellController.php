@@ -100,6 +100,8 @@ class SellController extends Controller
         $items->size = $request->input('size');
         // 商品の素材
         $items->material = $request->input('material');
+        // 販売中
+        $items->state     = Product::STATE_SELLING;
         $items->save();
 
         // カテゴリーidを作成し連携
