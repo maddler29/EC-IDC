@@ -16,10 +16,10 @@
     <div class="row">
         @foreach( $products as $product )
         <div class="col-3 mb-3">
-            <a href="{{ route('user.product.show', $product->id) }}" class="  d-inline-block d-flex justify-content-center align-items-center flex-column" role="button" style="  border-radius: 75px;">
-                <div class="card">
+            <a href="{{ route('user.product.show', $product->id) }}" class="bg-secondary  d-inline-block d-flex justify-content-center  flex-column" role="button" style="border-radius: 75px;">
+                <div class="card ">
                     <div class="position-relative overflow-hidden">
-                        <img src=" /storage/avatars/{{$product->image}}" class="card-image ">
+                        <img src=" /storage/avatars/{{$product->image}}" class="card-image">
                         <div class="position-absolute py-2 px-3" style="left: 0; bottom: 10px; color: white; background-color: rgba(0, 0, 0, 0.70)">
                             <i class="fas fa-yen-sign"></i>
                             <span class="ml-1">{{number_format($product->price)}}</span>
@@ -32,16 +32,17 @@
                         @endif
                     </div>
                     <div class="card-body">
-                        <p class="card-text">{{ $product->name }}</p>
-                        <p class="card-text">サイズ : {{ $product->size }}</p>
-                        @if(($product->item_categories->gender_id ) == 1)
-                        <p>Men's</p>
-                        @else
-                        <P>Wemen's</P>
-                        @endif
-
-
-                        {{-- name,size,image,gender_category,item_category,brand_category--}}
+                        <h5>{{ $product->name }}</h5>
+                        <p class="text-muted">サイズ : {{ $product->size }} /
+                            @if(($product->item_categories->gender_id ) == 1)
+                            Men's
+                            @else
+                            Wemen's
+                            @endif
+                        </p>
+                        <p class="text-muted">サイズ : {{ $product->brand_categories->brand_name }} /
+                            {{$product->item_categories->item_name }}
+                        </p>
                     </div>
                 </div>
 
