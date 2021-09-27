@@ -27,11 +27,12 @@ class ProductRequest extends FormRequest
         return [
             'name'        => 'required|string|max:50',
             'description' => 'required|string|max:500',
-            'image'       => 'required|file|image',
+            'image'       => 'nullable|file|image',
             'price'       => 'required|integer|min:100|max:9999999',
             'size'        => 'required|alpha_num',
             'material'    => 'required|string',
-            'category'    => 'required|integer',
+            'item_category'    => 'required|integer',
+            'brand_category'    => 'required|integer',
         ];
     }
     public function attributes()
@@ -43,7 +44,8 @@ class ProductRequest extends FormRequest
             'price'       => '販売価格',
             'size'        => 'サイズ',
             'material'    => '素材',
-            'category'    => 'カテゴリ',
+            'item_category'    => 'アイテムカテゴリ',
+            'brand_category'    => 'ブランドカテゴリ',
         ];
     }
 }
