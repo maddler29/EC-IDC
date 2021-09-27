@@ -21,7 +21,7 @@ class SellController extends Controller
      */
     public function index(Request $request)
     {
-        // 
+        //
         // $brand_categoriesという変数の中に、GenderCategoryというモデルからデータを取得する
         $brand_categories = GenderCategory::query()
             // brand_categoriesというリレーションのテーブルのデータも一緒に取得する
@@ -268,6 +268,6 @@ class SellController extends Controller
 
         // カテゴリーidを作成し連携
         return redirect()->route('admin.sell.index')
-            ->with('status', 'プロフィールを変更しました。');
+            ->with('status', '商品を変更しました。');
     }
 }

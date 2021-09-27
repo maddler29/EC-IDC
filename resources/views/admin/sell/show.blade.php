@@ -17,7 +17,9 @@
       </div>
     </div>
     {{ $items->description }}
-    {{--deleteメソッド deleterouteの追加--}}
+    {{ $items->size }}
+    {{ $items->material }}
+
     <form method="DELETE" action="{{ route('admin.product.delete',$id) }}">
 
       <div class="sell__btn-add-cart">
