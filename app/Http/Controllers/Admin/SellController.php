@@ -21,17 +21,9 @@ class SellController extends Controller
      */
     public function index(Request $request)
     {
-<<<<<<< HEAD
         // $brand_categoriesという変数の中に、GenderCategoryというモデルからデータを取得する
         $brand_categories = GenderCategory::query()
             // brand_categoriesというリレーションのテーブルのデータも一緒に取得する
-=======
-        $items = Product::with('item_categories', 'brand_categories')
-            ->get();
-
-
-        $item_categories = GenderCategory::query()
->>>>>>> e689b600f3ed19b1a2a9b0c3e3241610ceb067ac
             ->with([
                 'brand_categories' => function ($query) {
                     // データの並び順は、sotr_noの降順にして取得する
@@ -42,11 +34,6 @@ class SellController extends Controller
             ->orderBy('sort_no')
             // 実際に取得する
             ->get();
-<<<<<<< HEAD
-=======
-        //        dd($item_categories);
->>>>>>> e689b600f3ed19b1a2a9b0c3e3241610ceb067ac
-
         // $item_categoriesという変数の中に、GenderCategoryというモデルからデータを取得する
         $item_categories = GenderCategory::query()
             // item_categoriesというリレーションのテーブルのデータも一緒に取得する
@@ -61,16 +48,8 @@ class SellController extends Controller
             // 実際に取得する
             ->get();
 
-<<<<<<< HEAD
         // $queryという変数の中に、Productというモデルからデータを取得する
         $query = Product::query();
-=======
-        //            $defaults = [
-        //                Request::input('category', ''),
-        //                Request::input('keyword', ''),
-        //            ];
-        //        dd($brand_categories);
->>>>>>> e689b600f3ed19b1a2a9b0c3e3241610ceb067ac
 
         // カテゴリで絞り込み
         // キー(brand_category)がリクエストに存在しており、かつ値が入力されていたら
