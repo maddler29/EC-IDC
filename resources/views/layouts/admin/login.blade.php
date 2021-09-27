@@ -12,35 +12,21 @@
 
 <body>
 <div id="app">
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+{{--    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">--}}
+    <nav class="navbar navbar-expand-md navbar-light bg-light ">
         <div class="container">
-            <a class="navbar-brand" href="{{ url('admin/product') }}">
+            <a class="navbar-brand col-md-3" href="{{ url('admin/product') }}">
                 {{ config('app.name', 'Laravel') }}
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav mr-auto">
-                    <li>
-                        {{--出品画面へのリンク作成--}}
-                        <a class="fas fa-camera" href="{{ route('admin.product.create') }}">商品を出品する</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('admin.mypage.edit') }}">
-                            プロフィール編集
-                        </a>
-                    </li>
-                </ul>
-                <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ml-auto">
-                    {{--検索フォーム--}}
-                    <form class="form-inline" method="GET" action="{{ route('admin.home.index') }}">
+            <div class="d-flex col-md-8">
+                {{--検索フォーム機能--}}
+                    <form class="form-inline" method="GET" action="{{ route('admin.sell.index') }}">
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <select class="custom-select" name="category">
+                                <select class="custom-select" name="brand_category">
                                     <option value="">全て</option>
                                     @foreach ($brand_categories as $category)
                                         <option value="gender:{{$category->id}}" class="font-weight-bold">{{$category->gender}}</option>
@@ -50,12 +36,8 @@
                                     @endforeach
                                 </select>
                             </div>
-                        </div>
-                    </form>
-                    <form class="form-inline" method="GET" action="{{ route('admin.home.index') }}">
-                        <div class="input-group">
                             <div class="input-group-prepend">
-                                <select class="custom-select" name="category">
+                                <select class="custom-select" name="item_category">
                                     <option value="">全て</option>
                                     @foreach ($item_categories as $category)
                                         <option value="gender:{{$category->id}}" class="font-weight-bold">{{$category->gender}}</option>
@@ -73,8 +55,10 @@
                             </div>
                         </div>
                     </form>
-
-
+            </div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Right Side Of Navbar -->
+                <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
                     {{--adminがGuard で 認証されたユーザーだけにアクセス許可していなければ、
                     ログインしなければならない--}}
@@ -95,6 +79,8 @@
                                 {{ Auth::user()->name ?? '' }} <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('admin.product.create') }}">商品を出品</a>
+                                <a class="dropdown-item" href="{{ route('admin.mypage.edit') }}">プロフィール編集</a>
                                 <a class="dropdown-item" href="{{ route('admin.logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
