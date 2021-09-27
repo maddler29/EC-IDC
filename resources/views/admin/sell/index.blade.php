@@ -10,21 +10,30 @@
         <h3>Product List</h3>
     </div>
     @if(!empty($items))
-    <div class="sell-wrapper">
+    <div class="sell-wrapper ">
         @foreach ($items as $item)
-        <div class="card mb-3">
+        <div class="card mb-3 d-inline-flex">
             <div class="row">
-                <img src="/storage/avatars/{{$item->image}}" alt="{{ $item->name }}" class="product-cart-img" style="object-fit: cover; width: 300px; height: 400px;" />
-                <div class="card-body">
+                <div class="card-body ">
+                    <img src="/storage/avatars/{{$item->image}}" alt="{{ $item->name }}" class="product-cart-img" style="object-fit: cover; width: 200px; height: 200px;" />
                     <div class="card-product-name col-md-6">
                         商品名:{{ $item->name }}
                     </div>
-                    <div class="card-product-name col-6">
-                        {{--アイテムカテゴリ表示 多対多のテーブル関係を作成する必要がありそう--}}
-                        {{--種類:{{ $item->item_categories->item_name }}--}}
+                    <div class="card-product-item col-md-6">
+                        種類:{{ $item->item_categories->item_name }}
+                    </div>
+                    <div class="card-product-brand col-md-6">
+                        種類:{{ $item->brand_categories->brand_name }}
                     </div>
                     <div class="card__total-price col-md-6">
                         ¥{{ number_format($item->price) }}
+                    </div>
+                    <div class="card__gender col-md-6">
+                        @if(($item->item_categories->gender_id ) == 1)
+                        <p>Men's</p>
+                        @else
+                        <P>Wemen's</P>
+                        @endif
                     </div>
                     <div class="card__size col-md-6">
                         サイズ:{{ $item->size }}
@@ -46,7 +55,7 @@
                             @csrf
                             <div class="col-md-6">
                                 <input type="hidden" name="id" value="{{ $item->id }}" />
-                                <button type="submit" class="btn btn-primary ">編集</button>
+                                <button type="submit" class="btn btn-primary text-nowrap">編集</button>
                             </div>
                         </form>
                     </div>

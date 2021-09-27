@@ -19,7 +19,16 @@ class Product extends Model
     public function item_categories()
     {
         return $this->belongsTo(
-            ItemCategory::class
+            ItemCategory::class,
+            'item_category_id'
+        );
+    }
+
+    public function brand_categories()
+    {
+        return $this->belongsTo(
+            BrandCategory::class,
+            'brand_category_id'
         );
     }
 }

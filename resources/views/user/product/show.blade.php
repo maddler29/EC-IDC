@@ -12,12 +12,21 @@
             <div class="product__name">
                 {{ $product->name }}
             </div>
-            <div class="product__price">
-                ¥{{ number_format($product->price) }}
+            <p>¥{{ number_format($product->price) }}</p>
+            <p> 商品説明 : {{ $product->description }}</p>
+            <p> サイズ : {{ $product->size }}</p>
+            <p> 材質 : {{ $product->material }} </p>
+            <div class="card__gender col-md-6 text-nowrap">
+                @if(($product->item_categories->gender_id ) == 1)
+                <p>性別 : Men's</p>
+                @else
+                <P>性別 : Wemen's</P>
+                @endif
             </div>
+
         </div>
         {{-- size,material,item_category,gender_category,brand_category--}}
-        {{ $product->description }}
+
         <form method="POST" action="{{ route('user.line_item.create') }}">
             @csrf
             <input type="hidden" name="id" value="{{ $product->id }}" />
