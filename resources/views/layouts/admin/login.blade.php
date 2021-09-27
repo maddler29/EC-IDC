@@ -22,7 +22,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="d-flex col-md-8">
-                {{--検索フォーム--}}
+                {{--検索フォーム機能--}}
                     <form class="form-inline" method="GET" action="{{ route('admin.sell.index') }}">
                         <div class="input-group">
                             <div class="input-group-prepend">

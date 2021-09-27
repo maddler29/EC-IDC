@@ -21,6 +21,7 @@ class SellController extends Controller
      */
     public function index(Request $request)
     {
+        // 
         // $brand_categoriesという変数の中に、GenderCategoryというモデルからデータを取得する
         $brand_categories = GenderCategory::query()
             // brand_categoriesというリレーションのテーブルのデータも一緒に取得する
