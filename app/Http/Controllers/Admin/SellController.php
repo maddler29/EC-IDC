@@ -66,7 +66,7 @@ class SellController extends Controller
                     $query->where('gender_id', $categoryID);
                 });
             } elseif ($categoryType === 'brand') {
-                $query->where('brand_category_id',$categoryID);
+                $query->where('brand_category_id', $categoryID);
             }
         }
         // キー(item_category)がリクエストに存在しており、かつ値が入力されていたら
@@ -83,7 +83,7 @@ class SellController extends Controller
                 // もし、種別($categoryType)がitemと完全一致なら
             } elseif ($categoryType === 'item') {
                 // $categoryID(item_category_id)を絞り込みする
-                $query->where('item_category_id',$categoryID);
+                $query->where('item_category_id', $categoryID);
             }
         }
         // キーワードで絞り込み

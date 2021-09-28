@@ -14,18 +14,20 @@
             'product', $product
             ])
 
-            <form method="POST" action="{{ route('user.line_item.create') }}">
+            <form method="POST" action="{{ route('user.line_item.create') }}" class="">
                 @csrf
                 <input type="hidden" name="id" value="{{ $product->id }}" />
-                <div class="product__quantity">
-                    <input type="number" name="quantity" min="1" value="1" require />
-                </div>
-                <div class="product__btn-add-cart text-center">
-                    <button type="submit" class="btn btn-outline-secondary">カートに追加する</button>
+                <div class="row justify-content-center">
+                    <div class="product__quantity col-2 mr-4">
+                        <input type="number" name="quantity" min="1" value="1" class="form-control" require />
+                    </div>
+                    <div class="product__btn-add-cart col-4 ml-4">
+                        <button type="submit" class="btn btn-outline-secondary ">カートに追加する</button>
+                    </div>
                 </div>
             </form>
             <div class="my-3 text-center">
-                <h4>{!! nl2br(e($product->description)) !!}</h4>
+                <h4>商品説明 : {!! nl2br(e($product->description)) !!}</h4>
             </div>
         </div>
     </div>
