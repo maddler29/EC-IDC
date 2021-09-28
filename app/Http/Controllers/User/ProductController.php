@@ -13,7 +13,7 @@ class ProductController extends Controller
     public function index()
     {
 
-        $user = new User();
+        $user = Auth::user();
         $items = Product::orderByRaw("FIELD(state, '" . Product::STATE_SELLING . "', '" . Product::STATE_BOUGHT . "')")
             ->orderBy('id', 'DESC')
             ->paginate(9);
@@ -28,9 +28,10 @@ class ProductController extends Controller
 
     public function show($id)
     {
-
+        $user = Auth::user();
         $product = Product::find($id);
         return view('user.product.show')
-            ->with('product', $product);
+            ->with('product', $product)
+            ->with('user', $user);
     }
 }
