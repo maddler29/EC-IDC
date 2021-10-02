@@ -66,7 +66,7 @@ class SellController extends Controller
                     $query->where('gender_id', $categoryID);
                 });
             } elseif ($categoryType === 'brand') {
-                $query->where('brand_category_id',$categoryID);
+                $query->where('brand_category_id', $categoryID);
             }
         }
         // キー(item_category)がリクエストに存在しており、かつ値が入力されていたら
@@ -83,7 +83,7 @@ class SellController extends Controller
                 // もし、種別($categoryType)がitemと完全一致なら
             } elseif ($categoryType === 'item') {
                 // $categoryID(item_category_id)を絞り込みする
-                $query->where('item_category_id',$categoryID);
+                $query->where('item_category_id', $categoryID);
             }
         }
         // キーワードで絞り込み
@@ -123,9 +123,11 @@ class SellController extends Controller
      */
     public function create()
     {
+        $admin = Auth::user();
         $gender_categories = GenderCategory::orderBy('sort_no')->get();
         return view('admin/sell.create')
-            ->with('gender_categories', $gender_categories);
+            ->with('gender_categories', $gender_categories)
+            ->with('admin', $admin);
     }
 
     /**
@@ -140,6 +142,8 @@ class SellController extends Controller
         // $items = Auth::user();
         $items = new Product();
         // 画像アップロード
+        $admin = Auth::user();
+
 
         if ($request->has('image')) {
             $fileName = $this->saveAvatar($request->file('image'));
@@ -164,7 +168,8 @@ class SellController extends Controller
         $items->save();
 
         // カテゴリーidを作成し連携
-        return redirect()->route('admin.sell.index')->with('items', $items);
+        return redirect()->route('admin.sell.index')->with('items', $items)
+            ->with('admin', $admin);
     }
 
     /**
@@ -234,10 +239,13 @@ class SellController extends Controller
      */
     public function edit($id)
     {
+        $admin = Auth::user();
+
         $gender_categories = GenderCategory::orderBy('sort_no')->get();
         $items = Product::find($id);
         return view('admin/sell.edit', ['items' => $items])
-            ->with('gender_categories', $gender_categories);
+            ->with('gender_categories', $gender_categories)
+            ->with('admin', $admin);
     }
 
 
@@ -252,7 +260,7 @@ class SellController extends Controller
     public function update(ProductRequest $request, $id)
     {
 
-
+        $admin = Auth::user();
         $items = Product::find($id);
         $items->name = $request->input('name');
         $items->description = $request->input('description');
@@ -271,6 +279,7 @@ class SellController extends Controller
 
         // カテゴリーidを作成し連携
         return redirect()->route('admin.sell.index')
-            ->with('status', '商品を変更しました。');
+            ->with('status', '商品を変更しました。')
+            ->with('admin', $admin);
     }
 }

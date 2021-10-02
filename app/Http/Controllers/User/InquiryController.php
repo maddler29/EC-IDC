@@ -8,16 +8,20 @@ use App\Http\Requests\InquiryRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\InquiryForm;
+use Illuminate\Support\Facades\Auth;
 
 class InquiryController extends Controller
 {
     public function create()
     {
-        return view('user.inquiry.create');
+        $user = Auth::user();
+        return view('user.inquiry.create')
+            ->with('user', $user);
     }
 
     public function store(InquiryRequest $request)
     {
+        $user = Auth::user();
         $inputs = new Inquiry();
         $inputs->title = $request->input('title');
         $inputs->body = $request->input('body');
@@ -28,6 +32,7 @@ class InquiryController extends Controller
         Mail::to(config('mail.admin'))->send(new InquiryForm($inputs));
         Mail::to($inputs['email'])->send(new InquiryForm($inputs));
 
-        return back()->with('message', 'メールを送信したのでご確認ください');
+        return back()->with('message', 'メールを送信したのでご確認ください')
+            ->with('user', $user);
     }
 }

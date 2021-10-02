@@ -7,11 +7,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Models\Cart;
 use App\Models\LineItem;
+use Illuminate\Support\Facades\Auth;
+
 
 class CartController extends Controller
 {
     public function index()
     {
+        $user = Auth::user();
         // Session::get('cart')でセッションからカートIDを取得し、$cart_id変数へ代入しています。
         $cart_id = Session::get('cart');
         $cart = Cart::find($cart_id);
@@ -25,7 +28,8 @@ class CartController extends Controller
         // withメソッドでは、複数の値をBladeテンプレートへ渡す
         return view('user.cart.index')
             ->with('line_items', $cart->products)
-            ->with('total_price', $total_price);
+            ->with('total_price', $total_price)
+            ->with('user', $user);
     }
 
     // 5-5
@@ -56,7 +60,7 @@ class CartController extends Controller
         $session = \Stripe\Checkout\Session::create([
             'payment_method_types' => ['card'],
             'line_items'           => [$line_items],
-            'success_url'     => route('user.cart.success'),
+            'success_url'          => route('user.cart.success'),
             'cancel_url'           => route('user.cart.index'),
         ]);
 

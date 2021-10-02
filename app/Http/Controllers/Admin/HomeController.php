@@ -28,7 +28,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-//        $user = Auth::user();
+        $admin = Auth::user();
         $item_categories = GenderCategory::query()
             ->with([
                 'item_categories' => function ($query) {
@@ -53,7 +53,7 @@ class HomeController extends Controller
         //            ];
 
         return view('admin.home')
-            //            ->with('user', $user)
+            ->with('admin', $admin)
             ->with('item_categories', $item_categories)
             ->with('brand_categories', $brand_categories);
         //        ->with('defaults', $defaults);
