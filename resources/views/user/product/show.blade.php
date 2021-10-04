@@ -13,7 +13,7 @@
             @include('user.product.product_detail_panel', [
             'product', $product
             ])
-
+            @if($product->isStateSelling)
             <form method="POST" action="{{ route('user.line_item.create') }}" class="">
                 @csrf
                 <input type="hidden" name="id" value="{{ $product->id }}" />
@@ -26,6 +26,7 @@
                     </div>
                 </div>
             </form>
+            @endif
             <div class="my-3 text-center">
                 <h4>商品説明 : {!! nl2br(e($product->description)) !!}</h4>
             </div>
