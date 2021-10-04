@@ -26,7 +26,7 @@
                         </div>
 
                         @if ($product->isStateBought)
-                        <div class=" position-absolute py-1 font-weight-bold d-flex justify-content-center align-items-end" style="left: 0; top: 0; color: white; background-color: #EA352C; transform: translate(-50%,-50%) rotate(-45deg); width: 125px; height: 125px; font-size: 20px;">
+                        <div class=" position-absolute py-1 font-weight-bold d-flex justify-content-center align-items-end" style="left: 0; top: 0; color: white; background-color: #EA352C; transform: translate(-50%,-50%) rotate(-45deg); width: 125px; height: 125px; font-size: 15px;">
                             <span>SOLD OUT</span>
                         </div>
                         @endif
