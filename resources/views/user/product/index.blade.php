@@ -8,6 +8,15 @@
 <div class="jumbotron top-img">
     <p class="text-center text-white top-img-text">{{ config('app.name', 'Laravel') }}</p>
 </div>
+<div class="row">
+    <div class="col-8 offset-2">
+        @if (session('status'))
+        <div class="alert alert-success" role="alert">
+            {{ session('status') }}
+        </div>
+        @endif
+    </div>
+</div>
 
 <div class="container">
     <div class="top__title text-center">

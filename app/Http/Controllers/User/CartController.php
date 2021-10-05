@@ -91,6 +91,7 @@ class CartController extends Controller
         LineItem::where('cart_id', $cart_id)->delete();
 
         return redirect(route('user.product.index'))
-            ->with('products', $item);
+            ->with('products', $item)
+            ->with('status', '決済処理完了しました。');
     }
 }
