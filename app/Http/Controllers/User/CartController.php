@@ -7,11 +7,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Models\Cart;
 use App\Models\LineItem;
+use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
+
 
 class CartController extends Controller
 {
     public function index()
     {
+        $user = Auth::user();
         // Session::get('cart')でセッションからカートIDを取得し、$cart_id変数へ代入しています。
         $cart_id = Session::get('cart');
         $cart = Cart::find($cart_id);
@@ -25,7 +29,8 @@ class CartController extends Controller
         // withメソッドでは、複数の値をBladeテンプレートへ渡す
         return view('user.cart.index')
             ->with('line_items', $cart->products)
-            ->with('total_price', $total_price);
+            ->with('total_price', $total_price)
+            ->with('user', $user);
     }
 
     // 5-5
@@ -33,6 +38,11 @@ class CartController extends Controller
     {
         $cart_id = Session::get('cart');
         $cart = Cart::find($cart_id);
+        //購入した商品にSTATE_SELLINGからSTATE_BOUGHTに変更したい
+        // $products = Product::find($cart_id); ←$cart_idだと関係ない商品がSTATE_BOUGHTになる
+
+        // $products->state = Product::STATE_BOUGHT;
+        // $products->save();
 
         // 5-8
         if (count($cart->products) <= 0) {
@@ -56,13 +66,13 @@ class CartController extends Controller
         $session = \Stripe\Checkout\Session::create([
             'payment_method_types' => ['card'],
             'line_items'           => [$line_items],
-            'success_url'     => route('user.cart.success'),
+            'success_url'          => route('user.cart.success'),
             'cancel_url'           => route('user.cart.index'),
         ]);
 
         return view('user.cart.checkout', [
             'session' => $session,
-            'publicKey' => env('STRIPE_PUBLIC_KEY')
+            'publicKey' => env('STRIPE_PUBLIC_KEY'),
         ]);
     }
 
@@ -70,8 +80,18 @@ class CartController extends Controller
     public function success()
     {
         $cart_id = Session::get('cart');
+        $products = LineItem::where('cart_id', '=', $cart_id)->get(
+            ['product_id']
+        )->toArray();
+        foreach ($products as $product) {
+            $item = Product::find($product['product_id']);
+            $item->state = Product::STATE_BOUGHT;
+            $item->save();
+        };
         LineItem::where('cart_id', $cart_id)->delete();
 
-        return redirect(route('user.product.index'));
+        return redirect(route('user.product.index'))
+            ->with('products', $item)
+            ->with('status', '決済処理完了しました。');
     }
 }
