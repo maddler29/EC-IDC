@@ -6,6 +6,7 @@ use App\Models\GenderCategory;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -92,8 +93,7 @@ class ProductController extends Controller
         return view('user.product.index')
             ->with('items', $items)
             ->with('item_categories', $item_categories)
-            ->with('brand_categories', $brand_categories)
-            ->with('products', Product::get());
+            ->with('brand_categories', $brand_categories);
     }
 
     private function escape(string $value)
@@ -107,9 +107,10 @@ class ProductController extends Controller
 
     public function show($id)
     {
-
+        $user = Auth::user();
         $product = Product::find($id);
         return view('user.product.show')
-            ->with('product', $product);
+            ->with('product', $product)
+            ->with('user', $user);
     }
 }

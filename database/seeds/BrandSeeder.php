@@ -80,20 +80,6 @@ class BrandSeeder extends Seeder
                 'gender_id'           => 2,
 
             ],
-            [
-                'id'                  => 11,
-                'brand_name'          => 'グレイS',
-                'sort_no'             => 11,
-                'gender_id'           => 1,
-
-            ],
-            [
-                'id'                  => 12,
-                'brand_name'          => 'グレイS',
-                'sort_no'             => 12,
-                'gender_id'           => 2,
-
-            ],
 
         ]);
     }

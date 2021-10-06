@@ -5,7 +5,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title') |{{ config('app.name', 'Laravel') }}</title>
 
-
     <!-- Bootstrap Font Awesome-->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 </head>
@@ -79,7 +78,6 @@
                                 {{ Auth::user()->name ?? '' }} <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                {{--                                <a class="dropdown-item" href="{{ route('user.product.create') }}">商品を出品</a>--}}
                                 <a class="dropdown-item" href="{{ route('user.mypage.edit') }}">プロフィール編集</a>
                                 <a class="fas fa-shopping-cart dropdown-item" href="{{ route('user.cart.index') }}">
                                     カート
