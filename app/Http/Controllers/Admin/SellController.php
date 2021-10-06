@@ -22,7 +22,6 @@ class SellController extends Controller
      */
     public function index(Request $request)
     {
-        //
         // $brand_categoriesという変数の中に、GenderCategoryというモデルからデータを取得する
         $brand_categories = GenderCategory::query()
             // brand_categoriesというリレーションのテーブルのデータも一緒に取得する
@@ -36,7 +35,6 @@ class SellController extends Controller
             ->orderBy('sort_no')
             // 実際に取得する
             ->get();
-
         // $item_categoriesという変数の中に、GenderCategoryというモデルからデータを取得する
         $item_categories = GenderCategory::query()
             // item_categoriesというリレーションのテーブルのデータも一緒に取得する
