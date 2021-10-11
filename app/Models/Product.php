@@ -45,4 +45,17 @@ class Product extends Model
     {
         return $this->state === self::STATE_BOUGHT;
     }
+
+    public function selling()
+    {
+        $this->increment('id', 1);
+        $this->state = self::STATE_SELLING;
+        $this->save();
+    }
+
+    public function buyOut()
+    {
+        $this->state = self::STATE_BOUGHT;
+        $this->save();
+    }
 }
