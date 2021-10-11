@@ -3,9 +3,12 @@
 namespace App\Http\Requests\Mypage\Profile;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class EditRequest extends FormRequest
 {
+
+    private const GUEST_USER_ID = 2;
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -23,10 +26,17 @@ class EditRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'image' => ['file', 'image'],
-            'avatar' => 'file|image',
-            'name'   => 'required|string|max:50',
-        ];
+        if (Auth::id() == self::GUEST_USER_ID) {
+            return [
+                'image' => ['file', 'image'],
+                'avatar' => 'file|image',
+            ];
+        } else {
+            return [
+                'image' => ['file', 'image'],
+                'avatar' => 'file|image',
+                'name'   => 'required|string|max:50',
+            ];
+        }
     }
 }

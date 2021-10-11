@@ -22,6 +22,7 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
         'reset'    => true, // デフォルトの登録機能
         'verify'   => false, // メールリマインダー機能OFF
     ]);
+    Route::get('guest', 'Auth\LoginController@guestLogin')->name('login.guest');
 
     // ログイン認証後
     Route::middleware('auth:user')->group(function () {
