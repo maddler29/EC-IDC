@@ -6,7 +6,7 @@
     window.onload = function() {
         stripe.redirectToCheckout({
             sessionId: '{{ $session->id }}'
-        }).then(function (result) {
+        }).then(function(result) {
             window.location.href = 'http://localhost/cart';
         });
     }
