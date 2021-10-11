@@ -30,7 +30,7 @@ class ProfileController extends Controller
             $user->avatar_file_name = $fileName;
         }
 
-        $user->save();
+        $user->fill($request->validated())->save();
 
         return redirect()->back()
             ->with('status', 'プロフィールを変更しました。');
@@ -65,5 +65,4 @@ class ProfileController extends Controller
         $meta   = stream_get_meta_data($tmp_fp);
         return $meta["uri"];
     }
-
 }
