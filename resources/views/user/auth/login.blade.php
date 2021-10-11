@@ -26,6 +26,11 @@
                             </div>
                             <button class="btn btn-block btn-primary mt-2 mb-2" type="submit">ログイン</button>
                         </form>
+                        <button class="btn btn-success">
+                            <a href="{{ route('user.login.guest') }}" class="text-white">
+                                ゲストログイン
+                            </a>
+                        </button>
                         <div class="mt-0">
                             <a href="{{ route('user.register') }}" class="card-text">ユーザー登録はこちら</a>
                         </div>

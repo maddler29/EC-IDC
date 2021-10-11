@@ -30,6 +30,9 @@ class LoginController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
+    private const GUEST_USER_ID = 2;
+
+
     /**
      * Create a new controller instance.
      *
@@ -64,5 +67,15 @@ class LoginController extends Controller
     public function loggedOut(Request $request)
     {
         return redirect(route('user.login'));
+    }
+
+    public function guestLogin()
+    {
+        // id=1 のゲストユーザー情報がDBに存在すれば、ゲストログインする
+        if (Auth::loginUsingId(self::GUEST_USER_ID)) {
+            return redirect('/');
+        }
+
+        return redirect('/');
     }
 }
