@@ -22,6 +22,7 @@ class SellController extends Controller
      */
     public function index(Request $request)
     {
+        $admin = Auth::user();
         // $brand_categoriesという変数の中に、GenderCategoryというモデルからデータを取得する
         $brand_categories = GenderCategory::query()
             // brand_categoriesというリレーションのテーブルのデータも一緒に取得する
@@ -102,7 +103,8 @@ class SellController extends Controller
         return view('admin/sell.index')
             ->with('items', $items)
             ->with('item_categories', $item_categories)
-            ->with('brand_categories', $brand_categories);
+            ->with('brand_categories', $brand_categories)
+            ->with('admin', $admin);
     }
 
     private function escape(string $value)
