@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+    <link href="{{asset('/css/modal.css')}}" rel="stylesheet">
 <div class="container">
     <div class="sell__title">
         <h3>Product List</h3>
@@ -22,39 +23,59 @@
                             <span>SOLD OUT</span>
                         </div>
                         @endif
-                        <div class="card-product-name col-md-6">
+                        <div class="card-product-name col-md-12">
                             商品名:{{ $item->name }}
                         </div>
-                        <div class="card-product-item col-md-6">
+                        <div class="card-product-item col-md-12">
                             種類:{{ $item->item_categories->item_name }}
                         </div>
-                        <div class="card-product-brand col-md-6">
+                        <div class="card-product-brand col-md-12">
                             種類:{{ $item->brand_categories->brand_name }}
                         </div>
-                        <div class="card__total-price col-md-6">
+                        <div class="card__total-price col-md-12">
                             ¥{{ number_format($item->price) }}
                         </div>
-                        <div class="card__gender col-md-6">
+                        <div class="card__gender col-md-12">
                             @if(($item->item_categories->gender_id ) == 1)
-                            <p>Men's</p>
+                            Men's
                             @else
-                            <P>Wemen's</P>
+                            Wemen's
                             @endif
                         </div>
-                        <div class="card__size col-md-6">
+                        <div class="card__size col-md-12">
                             サイズ:{{ $item->size }}
                         </div>
-                        <div class="card__material col-md-6">
+                        <div class="card__material col-md-12">
                             材質:{{ $item->material }}
                         </div>
                         {{--カート画面にゴミ箱アイコンを追加--}}
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end ">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end text-nowrap ">
                             <form method="post" action="{{ route('admin.sell.destroy', $item->id) }}">
                                 @csrf
                                 @method('DELETE')
                                 <div class="col-md-6 offset-md-2 ">
                                     <input type="hidden" name="id" value="{{ $item->id }}" />
-                                    <button type="submit" class="fas fa-trash-alt btn btn-light"></button>
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">削除</button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">確認</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    商品を削除しますが、よろしいですか？
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">いいえ</button>
+                                                    <button type="submit" class="btn btn-danger">はい</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </form>
                             <form method="get" action="{{ route('admin.sell.edit', $item->id) }}">
@@ -78,4 +99,20 @@
     </div>
     @endif
 </div>
+@endsection
+
+@section('script')
+    <script>
+        $(function(){
+        $(".open").click(function (){
+        $(".modal").fadeIn();
+        });
+        $(".delete").click(function (){
+        $(".modal").fadeOut();
+        });
+        $(".modal_bg").click(function (){
+        $(".modal").fadeOut();
+        });
+        });
+    </script>
 @endsection
