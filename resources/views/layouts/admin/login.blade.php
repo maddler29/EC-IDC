@@ -12,8 +12,7 @@
 
 <body>
 <div id="app">
-{{--    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">--}}
-    <nav class="navbar navbar-expand-md navbar-light bg-light ">
+    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
             <a class="navbar-brand col-md-3" href="{{ url('admin/product') }}">
                 {{ config('app.name', 'Laravel') }}
@@ -50,7 +49,7 @@
                             <input type="text" name="keyword" class="form-control" aria-label="Text input with dropdown button" placeholder="キーワード検索">
                             <div class="input-group-append">
                                 <button type="submit" class="btn btn-outline-dark">
-                                    <i class="fas fa-search"></i>
+                                    <div>検索</div>
                                 </button>
                             </div>
                         </div>
@@ -76,7 +75,13 @@
 
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name ?? '' }} <span class="caret"></span>
+                                {{ Auth::user()->name ?? '' }}
+                                @if (!empty($admin->avatar_file_name))
+                                    <img src="/storage/avatars/{{$admin->avatar_file_name}}" class="rounded-circle" style="object-fit: cover; width: 35px; height: 35px;">
+                                @else
+                                    <img src="/images/avatar-default.svg" class="rounded-circle" style="object-fit: cover; width: 35px; height: 35px;">
+                                @endif
+                                <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('admin.product.create') }}">商品を出品</a>
