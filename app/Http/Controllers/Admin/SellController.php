@@ -277,6 +277,7 @@ class SellController extends Controller
         $items->material = $request->input('material');
         $items->save();
 
+
         // カテゴリーidを作成し連携
         return redirect()->route('admin.sell.index')
             ->with('status', '商品を変更しました。')

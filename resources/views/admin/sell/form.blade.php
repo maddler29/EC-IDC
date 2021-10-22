@@ -2,7 +2,11 @@
 {{-- 商品画像 --}}
 <div>商品画像</div>
 <span class="item-image-form image-picker">
+<<<<<<< HEAD
+    <input type="file" name="image" class="d-none" accept="image/png,image/jpeg,image/gif" id="image" />
+=======
     <input type="file" name="image" class="d-none" accept="image/png,image/jpeg,image/gif" id="image" required/>
+>>>>>>> origin/main
     <label for="image" class="d-inline-block" role="button">
         {{-- @if (!empty($items->image))--}}
         {{-- <img src="/storage/products/{{$items->image ?? ''}}" style="object-fit: cover; width: 300px; height: 300px;">--}}
