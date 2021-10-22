@@ -23,17 +23,6 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        <li>
-                            {{--出品画面へのリンク作成--}}
-                            <a class="fas fa-camera" href="{{ route('admin.product.create') }}">商品を出品する</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('admin.mypage.edit') }}">
-                                プロフィール編集
-                            </a>
-                        </li>
-                    </ul>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
@@ -62,6 +51,8 @@
                                 <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('admin.product.create') }}">商品を出品</a>
+                                <a class="dropdown-item" href="{{ route('admin.mypage.edit') }}">プロフィール編集</a>
                                 <a class="dropdown-item" href="{{ route('admin.logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}

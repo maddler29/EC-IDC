@@ -41,9 +41,10 @@
     </div>
 </div>
 
+
 <div class="container">
     <div class="top__title text-center">
-        All Products
+        <h2>All Products</h2>
     </div>
     <div class="row">
         @foreach( $items as $item )

@@ -49,10 +49,9 @@
                     </span>
                     @enderror
                 </div>
+
                 <input type="hidden" name="remember" id="remember" value="on">
-                <div class="text-left">
-                    <a class="card-text text-primary" href="{{route('user.password.request')}}">パスワードを再設定</a>
-                </div>
+
 
                 <div class="form-group mb-0 mt-3">
                     <button type="submit" class="btn btn-block btn-primary">
