@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <link href="{{asset('/css/modal.css')}}" rel="stylesheet">
+<link href="{{asset('/css/modal.css')}}" rel="stylesheet">
 <div class="container">
     <div class="sell__title">
         <h3>Product List</h3>
@@ -55,9 +55,9 @@
                                 @method('DELETE')
                                 <div class="col-md-6 offset-md-2 ">
                                     <input type="hidden" name="id" value="{{ $item->id }}" />
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">削除</button>
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal{{ $item->id }}">削除</button>
                                     <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="exampleModal{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -102,17 +102,17 @@
 @endsection
 
 @section('script')
-    <script>
-        $(function(){
-        $(".open").click(function (){
-        $(".modal").fadeIn();
+<script>
+    $(function() {
+        $(".open").click(function() {
+            $(".modal").fadeIn();
         });
-        $(".delete").click(function (){
-        $(".modal").fadeOut();
+        $(".delete").click(function() {
+            $(".modal").fadeOut();
         });
-        $(".modal_bg").click(function (){
-        $(".modal").fadeOut();
+        $(".modal_bg").click(function() {
+            $(".modal").fadeOut();
         });
-        });
-    </script>
+    });
+</script>
 @endsection
