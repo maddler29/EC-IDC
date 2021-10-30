@@ -109,9 +109,9 @@
         <main class="py-4">
             @yield('content')
         </main>
-        <div>
-            @yield('footer')
-        </div>
+        <footer id="footer" class="fixed-bottom bg-white text-center" style="height: 30px;">
+            <p>© 2021 IDC inc.</p>
+        </footer>
     </div>
     <!-- Bootstrap Vue JavaScript -->
     <script src="{{ mix('js/app.js') }}"></script>
@@ -120,5 +120,4 @@
 
     @yield('script')
 </body>
-
 </html>

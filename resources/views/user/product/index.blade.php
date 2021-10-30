@@ -88,4 +88,3 @@
     </div>
 </div>
 @endsection
-@extends('layouts.user.footer')
