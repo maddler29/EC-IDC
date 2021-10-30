@@ -51,8 +51,8 @@
                                 <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('admin.product.create') }}">商品を出品</a>
-                                <a class="dropdown-item" href="{{ route('admin.mypage.edit') }}">プロフィール編集</a>
+                                <a class="fas fa-camera dropdown-item" href="{{ route('admin.product.create') }}">商品を出品</a>
+                                <a class="fas fa-address-card dropdown-item" href="{{ route('admin.mypage.edit') }}">プロフィール編集</a>
                                 <a class="dropdown-item" href="{{ route('admin.logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}

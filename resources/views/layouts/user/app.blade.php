@@ -50,11 +50,11 @@
                                 <a class="fas fa-shopping-cart dropdown-item" href="{{ route('user.cart.index') }}">
                                     カート
                                 </a>
-                                <a class="dropdown-item" href="{{ route('user.inquiry.create') }}">
-                                    お問い合わせ
-                                </a>
-                                <a class="dropdown-item" href="{{ route('user.mypage.edit') }}">
+                                <a class="fas fa-address-card dropdown-item" href="{{ route('user.mypage.edit') }}">
                                     プロフィール編集
+                                </a>
+                                <a class="fas fa-comments dropdown-item" href="{{ route('user.inquiry.create') }}">
+                                    お問い合わせ
                                 </a>
                                 <a class="dropdown-item" href="{{ route('user.logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -74,6 +74,9 @@
         <main class="py-4">
             @yield('content')
         </main>
+        <div>
+            @yield('footer')
+        </div>
     </div>
     <!-- Bootstrap Vue JavaScript -->
     <script src="{{ mix('js/app.js') }}"></script>

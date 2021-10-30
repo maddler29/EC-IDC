@@ -13,13 +13,13 @@
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img class="d-block mx-auto" src="{{ asset('/images/slide/slide.jpg') }}" alt="First slide">
+            <img class="d-block mx-auto" src="{{ asset('/images/slide/IMG_8858.jpg') }}" alt="First slide">
         </div>
         <div class="carousel-item">
-            <img class="d-block mx-auto" src="{{ asset('/images/slide/slide001.jpg') }}" alt="Second slide">
+            <img class="d-block mx-auto" src="{{ asset('/images/slide/IMG_8859.jpg') }}" alt="Second slide">
         </div>
         <div class="carousel-item">
-            <img class="d-block mx-auto" src="{{ asset('/images/slide/slide002.jpg') }}" alt="Third slide">
+            <img class="d-block mx-auto" src="{{ asset('/images/slide/IMG_8860.jpg') }}" alt="Third slide">
         </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -79,8 +79,6 @@
                         </p>
                     </div>
                 </div>
-
-
             </a>
         </div>
         @endforeach
@@ -90,3 +88,4 @@
     </div>
 </div>
 @endsection
+@extends('layouts.user.footer')
